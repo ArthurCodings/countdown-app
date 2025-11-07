@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="精美的双模式倒计时器，支持专注模式和日常时钟，内含500+名人名言">
+    <meta name="theme-color" content="#00d4ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="专注时光">
+    <title>倒计时氛围感 - 专注时光</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- 图标 -->
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <!-- 样式表 -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 背景粒子效果 -->
+    <div class="particles-container" id="particles"></div>
+    
+    <!-- 主容器 -->
+    <div class="app-container">
+        <!-- 顶部导航栏 -->
+        <header class="top-nav">
+            <div class="app-logo">
+                <div class="logo-container">
+                    <div class="logo-heart">💕</div>
+                    <div class="logo-text">
+                        <span class="logo-main">Study</span>
+                        <span class="logo-sub">Timer</span>
+                    </div>
+                    <div class="logo-sparkles">
+                        <span class="sparkle">✨</span>
+                        <span class="sparkle">🌸</span>
+                        <span class="sparkle">✨</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 控制按钮组 -->
+            <div class="control-group">
+                <!-- 模式切换 -->
+                <div class="mode-switch" role="tablist" aria-label="时间模式选择">
+                    <button class="mode-btn active" id="focusModeBtn" role="tab" aria-selected="true" aria-controls="focus-mode">
+                        <span class="mode-icon">🎯</span>
+                        专注模式
+                    </button>
+                    <button class="mode-btn" id="restModeBtn" role="tab" aria-selected="false" aria-controls="rest-mode">
+                        <span class="mode-icon">🌸</span>
+                        休息模式
+                    </button>
+                    <button class="mode-btn" id="examModeBtn" role="tab" aria-selected="false" aria-controls="exam-mode">
+                        <span class="mode-icon">📚</span>
+                        考研倒计时
+                    </button>
+                    <button class="mode-btn" id="clockModeBtn" role="tab" aria-selected="false" aria-controls="clock-mode">
+                        <span class="mode-icon">🕐</span>
+                        日常时钟
+                    </button>
+                </div>
+                
+                <!-- 主题选择器 -->
+                <div class="theme-selector">
+                    <button class="theme-btn" id="themeBtn" aria-label="主题选择">
+                        <span class="theme-icon">🎨</span>
+                    </button>
+                    <div class="theme-dropdown" id="themeDropdown">
+                        <div class="theme-option active" data-theme="dark">
+                            <span class="theme-preview dark-preview"></span>
+                            <span class="theme-name">深邃夜空</span>
+                        </div>
+                        <div class="theme-option" data-theme="light">
+                            <span class="theme-preview light-preview"></span>
+                            <span class="theme-name">清新白昼</span>
+                        </div>
+                        <div class="theme-option" data-theme="romantic">
+                            <span class="theme-preview romantic-preview"></span>
+                            <span class="theme-name">浪漫粉樱</span>
+                        </div>
+                        <div class="theme-option" data-theme="warm">
+                            <span class="theme-preview warm-preview"></span>
+                            <span class="theme-name">温暖日落</span>
+                        </div>
+                        <div class="theme-option" data-theme="forest">
+                            <span class="theme-preview forest-preview"></span>
+                            <span class="theme-name">森林绿意</span>
+                        </div>
+                        <div class="theme-option" data-theme="ocean">
+                            <span class="theme-preview ocean-preview"></span>
+                            <span class="theme-name">海洋蓝调</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 数字风格选择器 -->
+                <div class="digit-style-selector">
+                    <button class="digit-style-btn" id="digitStyleBtn" aria-label="数字风格选择">
+                        <span class="digit-style-icon">🔢</span>
+                    </button>
+                    <div class="digit-style-dropdown" id="digitStyleDropdown">
+                        <div class="digit-style-option active" data-style="tech">
+                            <span class="style-preview tech-preview">123</span>
+                            <span class="style-name">科技感</span>
+                        </div>
+                        <div class="digit-style-option" data-style="cute">
+                            <span class="style-preview cute-preview">123</span>
+                            <span class="style-name">可爱圆润</span>
+                        </div>
+                        <div class="digit-style-option" data-style="elegant">
+                            <span class="style-preview elegant-preview">123</span>
+                            <span class="style-name">优雅细线</span>
+                        </div>
+                        <div class="digit-style-option" data-style="playful">
+                            <span class="style-preview playful-preview">123</span>
+                            <span class="style-name">俏皮泡泡</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 设置按钮 -->
+                <button class="settings-btn" id="settingsBtn" aria-label="打开设置">
+                    <span class="settings-icon">⚙️</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- 主显示区域 -->
+        <main class="main-display">
+            <!-- 专注模式 -->
+            <section class="focus-mode active" id="focus-mode" role="tabpanel" aria-labelledby="focusModeBtn">
+                <div class="countdown-container">
+                    <div class="countdown-setup" id="countdownSetup">
+                        <h2 class="section-title">设定专注目标</h2>
+                        
+                        <!-- 快捷设置 -->
+                        <div class="quick-settings">
+                            <div class="quick-settings-group">
+                                <h4 class="settings-group-title">⏱️ 常用时长</h4>
+                                <div class="quick-buttons-row">
+                                    <button class="quick-btn popular" data-minutes="25">25分钟</button>
+                                    <button class="quick-btn popular" data-minutes="45">45分钟</button>
+                                    <button class="quick-btn popular" data-minutes="90">1.5小时</button>
+                                    <button class="quick-btn popular" data-minutes="120">2小时</button>
+                                </div>
+                            </div>
+                            <div class="quick-settings-group">
+                                <h4 class="settings-group-title">🚀 快速专注</h4>
+                                <div class="quick-buttons-row">
+                                    <button class="quick-btn short" data-minutes="10">10分钟</button>
+                                    <button class="quick-btn short" data-minutes="15">15分钟</button>
+                                    <button class="quick-btn short" data-minutes="30">30分钟</button>
+                                    <button class="quick-btn short" data-minutes="60">1小时</button>
+                                </div>
+                            </div>
+                            <div class="quick-settings-group">
+                                <h4 class="settings-group-title">💪 深度专注</h4>
+                                <div class="quick-buttons-row">
+                                    <button class="quick-btn long" data-minutes="180">3小时</button>
+                                    <button class="quick-btn long" data-minutes="240">4小时</button>
+                                    <button class="quick-btn long" data-minutes="360">6小时</button>
+                                    <button class="quick-btn long" data-minutes="480">8小时</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 自定义时间设置 -->
+                        <div class="datetime-picker">
+                            <h4 class="settings-group-title">📅 精确时间设置</h4>
+                            <div class="datetime-inputs">
+                                <div class="input-group enhanced">
+                                    <label for="targetDate">
+                                        <span class="input-icon">📅</span>
+                                        目标日期
+                                    </label>
+                                    <input type="date" id="targetDate" class="date-input enhanced">
+                                </div>
+                                <div class="input-group enhanced">
+                                    <label for="targetTime">
+                                        <span class="input-icon">⏰</span>
+                                        目标时间
+                                    </label>
+                                    <input type="time" id="targetTime" step="1" class="time-input enhanced">
+                                </div>
+                            </div>
+                            <div class="datetime-preview" id="datetimePreview">
+                                <span class="preview-icon">🎯</span>
+                                <span class="preview-text">请选择目标时间</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 音乐选择 -->
+                        <div class="music-selection">
+                            <div class="music-header">
+                                <h3>选择完成后奖励音乐 🎵</h3>
+                                <div class="music-controls">
+                                    <button class="refresh-music-btn" id="refreshStudyMusic" aria-label="刷新音乐列表">
+                                        <span class="refresh-icon">🔄</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 音乐搜索框 -->
+                            <div class="music-search-container">
+                                <span class="music-search-icon">🔍</span>
+                                <input type="text" class="music-search-input" id="studyMusicSearch" placeholder="搜索音乐...">
+                                <button class="music-search-clear" id="studyMusicSearchClear">✕</button>
+                            </div>
+                            <div class="music-list" id="studyMusicList">
+                                <!-- 动态加载学习完成音乐 -->
+                            </div>
+                            <div class="music-no-results" id="studyMusicNoResults">
+                                🔍 没有找到匹配的音乐
+                            </div>
+                            <div class="music-hint">
+                                📁 音乐管理：将音乐文件（.mp3, .wav, .ogg）放入项目的 <strong>music/学习/</strong> 文件夹<br>
+                                💡 添加音乐后：运行脚本生成列表 → 点击🔄按钮刷新此列表
+                            </div>
+                        </div>
+                        
+                        <button class="start-countdown-btn" id="startCountdown">
+                            <span class="btn-icon">🚀</span>
+                            开始专注
+                        </button>
+                    </div>
+                    
+                    <!-- 倒计时显示 -->
+                    <div class="countdown-display hidden" id="countdownDisplay">
+                        <div class="countdown-title">专注倒计时</div>
+                        <div class="time-display countdown-time">
+                            <div class="time-unit">
+                                <div class="digit-container">
+                                    <span class="digit" id="days">00</span>
+                                </div>
+                                <span class="unit-label">天</span>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="time-unit">
+                                <div class="digit-container">
+                                    <span class="digit" id="hours">00</span>
+                                </div>
+                                <span class="unit-label">时</span>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="time-unit">
+                                <div class="digit-container">
+                                    <span class="digit" id="minutes">00</span>
+                                </div>
+                                <span class="unit-label">分</span>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="time-unit">
+                                <div class="digit-container">
+                                    <span class="digit" id="seconds">00</span>
+                                </div>
+                                <span class="unit-label">秒</span>
+                            </div>
+                        </div>
+                        
+                        <div class="countdown-controls">
+                            <button class="control-btn pause-btn" id="pauseCountdown">
+                                <span class="btn-icon">⏸️</span>
+                                暂停
+                            </button>
+                            <button class="control-btn stop-btn" id="stopCountdown">
+                                <span class="btn-icon">⏹️</span>
+                                停止
+                            </button>
+                        </div>
+                        
+                        <!-- 进度条 -->
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-text" id="progressText">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 休息模式 -->
+            <section class="rest-mode" id="rest-mode" role="tabpanel" aria-labelledby="restModeBtn">
+                <div class="rest-container">
+                    <div class="rest-setup" id="restSetup">
+                        <h2 class="section-title">设定休息时间</h2>
+                        
+                        <!-- 休息快捷设置 -->
+                        <div class="rest-quick-settings">
+                            <button class="quick-btn rest-btn" data-minutes="5">5分钟</button>
+                            <button class="quick-btn rest-btn" data-minutes="10">10分钟</button>
+                            <button class="quick-btn rest-btn" data-minutes="15">15分钟</button>
+                            <button class="quick-btn rest-btn" data-minutes="30">30分钟</button>
+                        </div>
+                        
+                        <!-- 自定义时间设置 -->
+                        <div class="datetime-picker">
+                            <div class="input-group">
+                                <label for="restTargetTime">休息时长（分钟）：</label>
+                                <input type="number" id="restTargetTime" min="1" max="120" value="15" class="time-input">
+                            </div>
+                        </div>
+                        
+                        <!-- 音乐选择 -->
+                        <div class="music-selection">
+                            <div class="music-header">
+                                <h3>选择休息音乐 🎵</h3>
+                                <div class="music-controls">
+                                    <button class="refresh-music-btn" id="refreshRestMusic" aria-label="刷新音乐列表">
+                                        <span class="refresh-icon">🔄</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 音乐搜索框 -->
+                            <div class="music-search-container">
+                                <span class="music-search-icon">🔍</span>
+                                <input type="text" class="music-search-input" id="restMusicSearch" placeholder="搜索音乐...">
+                                <button class="music-search-clear" id="restMusicSearchClear">✕</button>
+                            </div>
+                            <div class="music-list" id="restMusicList">
+                                <!-- 动态加载休息音乐 -->
+                            </div>
+                            <div class="music-no-results" id="restMusicNoResults">
+                                🔍 没有找到匹配的音乐
+                            </div>
+                            <div class="music-hint">
+                                📁 音乐管理：将音乐文件（.mp3, .wav, .ogg）放入项目的 <strong>music/休息/</strong> 文件夹<br>
+                                💡 添加音乐后：运行脚本生成列表 → 点击🔄按钮刷新此列表
+                            </div>
+                        </div>
+                        
+                        <button class="start-countdown-btn rest-start-btn" id="startRestCountdown">
+                            <span class="btn-icon">🌸</span>
+                            开始休息
+                        </button>
+                    </div>
+                    
+                    <!-- 休息倒计时显示 -->
+                    <div class="countdown-display hidden" id="restCountdownDisplay">
+                        <div class="countdown-title">愉快休息时光</div>
+                        <div class="time-display rest-time">
+                            <div class="time-unit">
+                                <div class="digit-container">
+                                    <span class="digit" id="restMinutes">00</span>
+                                </div>
+                                <span class="unit-label">分</span>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="time-unit">
+                                <div class="digit-container">
+                                    <span class="digit" id="restSeconds">00</span>
+                                </div>
+                                <span class="unit-label">秒</span>
+                            </div>
+                        </div>
+                        
+                        <div class="rest-info">
+                            <div class="rest-message">🌸 好好放松，为下一次专注充电 💕</div>
+                            <div class="current-music" id="currentRestMusic">
+                                <span class="music-icon">🎵</span>
+                                <span class="music-name">正在播放...</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 休息倒计时中的音乐选择 -->
+                        <div class="rest-music-selector">
+                            <div class="music-selector-header">
+                                <h4>🎵 切换音乐</h4>
+                                <button class="music-selector-toggle" id="restMusicSelectorToggle">
+                                    <span class="toggle-icon">▼</span>
+                                </button>
+                            </div>
+                            <div class="music-selector-content hidden" id="restMusicSelectorContent">
+                                <!-- 音乐搜索框 -->
+                                <div class="music-search-container">
+                                    <span class="music-search-icon">🔍</span>
+                                    <input type="text" class="music-search-input" id="restCountdownMusicSearch" placeholder="搜索音乐...">
+                                    <button class="music-search-clear" id="restCountdownMusicSearchClear">✕</button>
+                                </div>
+                                <div class="music-list countdown-music-list" id="restCountdownMusicList">
+                                    <!-- 动态加载休息音乐 -->
+                                </div>
+                                <div class="music-no-results" id="restCountdownMusicNoResults">
+                                    🔍 没有找到匹配的音乐
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="countdown-controls">
+                            <button class="control-btn pause-btn" id="pauseRestCountdown">
+                                <span class="btn-icon">⏸️</span>
+                                暂停
+                            </button>
+                            <button class="control-btn stop-btn" id="stopRestCountdown">
+                                <span class="btn-icon">⏹️</span>
+                                结束休息
+                            </button>
+                        </div>
+                        
+                        <!-- 进度条 -->
+                        <div class="progress-container">
+                            <div class="progress-bar rest-progress">
+                                <div class="progress-fill" id="restProgressFill"></div>
+                            </div>
+                            <div class="progress-text" id="restProgressText">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 考研倒计时模式 -->
+            <section class="exam-mode" id="exam-mode" role="tabpanel" aria-labelledby="examModeBtn">
+                <div class="exam-container">
+                    <div class="exam-header">
+                        <h2 class="exam-title">
+                            <span class="exam-icon">🌸</span>
+                            2025考研倒计时
+                            <span class="exam-icon">💕</span>
+                        </h2>
+                        <div class="exam-motivation">
+                            <p class="motivation-text">愿你的努力，配得上你的梦想 ✨</p>
+                            <p class="exam-date">考试时间：2025年12月21日 08:30</p>
+                        </div>
+                    </div>
+                    
+                    <div class="exam-countdown-display">
+                        <div class="exam-time-display">
+                            <div class="exam-time-unit">
+                                <div class="exam-digit-container">
+                                    <span class="exam-digit" id="examDays">000</span>
+                                </div>
+                                <span class="exam-unit-label">天</span>
+                                <span class="exam-unit-desc">Days</span>
+                            </div>
+                            <div class="exam-time-separator">:</div>
+                            <div class="exam-time-unit">
+                                <div class="exam-digit-container">
+                                    <span class="exam-digit" id="examHours">00</span>
+                                </div>
+                                <span class="exam-unit-label">时</span>
+                                <span class="exam-unit-desc">Hours</span>
+                            </div>
+                            <div class="exam-time-separator">:</div>
+                            <div class="exam-time-unit">
+                                <div class="exam-digit-container">
+                                    <span class="exam-digit" id="examMinutes">00</span>
+                                </div>
+                                <span class="exam-unit-label">分</span>
+                                <span class="exam-unit-desc">Minutes</span>
+                            </div>
+                            <div class="exam-time-separator">:</div>
+                            <div class="exam-time-unit">
+                                <div class="exam-digit-container">
+                                    <span class="exam-digit" id="examSeconds">00</span>
+                                </div>
+                                <span class="exam-unit-label">秒</span>
+                                <span class="exam-unit-desc">Seconds</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 考研进度环 -->
+                        <div class="exam-progress-ring">
+                            <svg class="progress-ring" width="200" height="200">
+                                <defs>
+                                    <linearGradient id="examGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#ff69b4"/>
+                                        <stop offset="50%" style="stop-color:#da70d6"/>
+                                        <stop offset="100%" style="stop-color:#9370db"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle 
+                                    class="progress-ring-background"
+                                    cx="100" 
+                                    cy="100" 
+                                    r="90"
+                                    stroke-width="8"
+                                    fill="transparent"
+                                />
+                                <circle 
+                                    class="progress-ring-circle"
+                                    cx="100" 
+                                    cy="100" 
+                                    r="90"
+                                    stroke-width="8"
+                                    fill="transparent"
+                                    id="examProgressCircle"
+                                />
+                            </svg>
+                            <div class="progress-ring-text">
+                                <div class="progress-percentage" id="examProgressPercentage">0%</div>
+                                <div class="progress-label">已过时间</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 考研鼓励语 -->
+                        <div class="exam-encouragement">
+                            <div class="encouragement-text" id="examEncouragement">
+                                🌟 每一分努力都在为梦想积累能量
+                            </div>
+                            <div class="exam-milestones">
+                                <div class="milestone" id="milestone100">
+                                    <span class="milestone-icon">🎯</span>
+                                    <span class="milestone-text">还有100天</span>
+                                </div>
+                                <div class="milestone" id="milestone50">
+                                    <span class="milestone-icon">🔥</span>
+                                    <span class="milestone-text">还有50天</span>
+                                </div>
+                                <div class="milestone" id="milestone30">
+                                    <span class="milestone-icon">⚡</span>
+                                    <span class="milestone-text">冲刺30天</span>
+                                </div>
+                                <div class="milestone" id="milestone7">
+                                    <span class="milestone-icon">💪</span>
+                                    <span class="milestone-text">最后一周</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 日常时钟模式 -->
+            <section class="clock-mode" id="clock-mode" role="tabpanel" aria-labelledby="clockModeBtn">
+                <div class="clock-container">
+                    <h2 class="section-title">北京时间</h2>
+                    <div class="beijing-time">
+                        <div class="date-display" id="dateDisplay">
+                            <span class="year" id="year">2024</span>年
+                            <span class="month" id="month">01</span>月
+                            <span class="day" id="day">01</span>日
+                            <span class="weekday" id="weekday">星期一</span>
+                        </div>
+                        
+                        <div class="time-display clock-time">
+                            <div class="time-unit">
+                                <div class="digit-container">
+                                    <span class="digit" id="clockHours">00</span>
+                                </div>
+                                <span class="unit-label">时</span>
+                            </div>
+                            <div class="time-separator blink">:</div>
+                            <div class="time-unit">
+                                <div class="digit-container">
+                                    <span class="digit" id="clockMinutes">00</span>
+                                </div>
+                                <span class="unit-label">分</span>
+                            </div>
+                            <div class="time-separator blink" id="secondsSeparator">:</div>
+                            <div class="time-unit" id="secondsUnit">
+                                <div class="digit-container">
+                                    <span class="digit" id="clockSeconds">00</span>
+                                </div>
+                                <span class="unit-label">秒</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 时钟控制 -->
+                        <div class="clock-controls">
+                            <button class="control-btn" id="toggleSeconds">
+                                <span class="btn-icon">👁️</span>
+                                显示秒数
+                            </button>
+                            <button class="control-btn" id="syncTime">
+                                <span class="btn-icon">🔄</span>
+                                同步时间
+                            </button>
+                        </div>
+                        
+                        <!-- 时间状态指示 -->
+                        <div class="time-status">
+                            <span class="status-indicator" id="timeStatus">
+                                <span class="status-dot"></span>
+                                已同步
+                            </span>
+                            <span class="last-sync" id="lastSync">刚刚</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 名人名言区域 -->
+        <section class="quotes-section">
+            <div class="quote-container">
+                <div class="quote-content" id="quoteContent">
+                    <div class="quote-text" id="quoteText">
+                        时间是一切财富中最宝贵的财富。
+                    </div>
+                    <div class="quote-author" id="quoteAuthor">— 德奥弗拉斯多</div>
+                </div>
+                
+                <div class="quote-controls">
+                    <button class="quote-btn" id="prevQuote" aria-label="上一句名言">
+                        <span class="btn-icon">◀</span>
+                    </button>
+                    <button class="quote-btn" id="nextQuote" aria-label="下一句名言">
+                        <span class="btn-icon">▶</span>
+                    </button>
+                    <button class="quote-btn" id="copyQuote" aria-label="复制名言">
+                        <span class="btn-icon">📋</span>
+                    </button>
+                    <button class="quote-btn" id="favoriteQuote" aria-label="收藏名言">
+                        <span class="btn-icon">❤️</span>
+                    </button>
+                    <button class="quote-btn" id="autoPlayQuote" aria-label="自动播放">
+                        <span class="btn-icon">▶️</span>
+                    </button>
+                </div>
+                
+                <!-- 标签过滤 -->
+                <div class="quote-tags" id="quoteTags">
+                    <button class="tag-btn active" data-tag="all">全部</button>
+                    <button class="tag-btn" data-tag="时间">时间</button>
+                    <button class="tag-btn" data-tag="专注">专注</button>
+                    <button class="tag-btn" data-tag="努力">努力</button>
+                    <button class="tag-btn" data-tag="成功">成功</button>
+                    <button class="tag-btn" data-tag="人生">人生</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 音效控制 -->
+        <div class="audio-controls" id="audioControls">
+            <button class="audio-btn" id="audioToggle" aria-label="音效开关">
+                <span class="audio-icon">🔇</span>
+            </button>
+            <div class="volume-control" id="volumeControl">
+                <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
+                <span class="volume-value" id="volumeValue">50%</span>
+            </div>
+        </div>
+
+        <!-- 左侧音乐控制图标 -->
+    <!-- 音乐控制按钮 - 点击打开/还原视频播放器 -->
+    <div class="music-toggle-control" id="musicToggleControl" aria-label="音乐控制" title="打开音乐播放器">
+        <span class="music-toggle-icon" id="musicToggleIcon">🎵</span>
+    </div>
+
+    <!-- 视频播放器 -->
+    <div class="video-player-modal hidden" id="videoPlayerModal">
+        <div class="video-player-container">
+            <div class="video-player-header">
+                <div class="video-player-title" id="videoPlayerTitle">视频播放</div>
+                <div class="video-player-header-controls">
+                    <button class="video-player-minimize" id="videoPlayerMinimize" aria-label="最小化视频播放器" title="最小化">
+                        <span>−</span>
+                    </button>
+                    <button class="video-player-close" id="videoPlayerClose" aria-label="关闭视频播放器" title="关闭">
+                        <span>✕</span>
+                    </button>
+                </div>
+            </div>
+            <div class="video-player-content">
+                <video id="videoPlayer" class="video-player-element" controls controlsList="nodownload">
+                    您的浏览器不支持视频播放
+                </video>
+                <div class="video-player-info">
+                    <div class="video-player-name" id="videoPlayerName">正在加载...</div>
+                    <div class="video-player-category" id="videoPlayerCategory">🎵</div>
+                </div>
+            </div>
+            <div class="video-player-controls">
+                <button class="video-control-btn" id="videoPrevBtn" aria-label="上一首" title="上一首">
+                    <span>⏮️</span>
+                </button>
+                <button class="video-control-btn" id="videoNextBtn" aria-label="下一首" title="下一首">
+                    <span>⏭️</span>
+                </button>
+            </div>
+            <div class="video-player-hint">
+                <small style="color: var(--text-secondary); text-align: center; display: block; margin-top: 8px;">
+                    💡 使用视频下方的原生控制条来播放、暂停、调整进度和全屏
+                </small>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 最小化的视频播放器 -->
+    <div class="video-player-minimized hidden" id="videoPlayerMinimized">
+        <div class="minimized-content">
+            <div class="minimized-info">
+                <span class="minimized-icon">🎵</span>
+                <div class="minimized-text">
+                    <div class="minimized-name" id="minimizedPlayerName">正在播放...</div>
+                    <div class="minimized-category" id="minimizedPlayerCategory">音乐</div>
+                </div>
+            </div>
+            <div class="minimized-controls">
+                <button class="minimized-control-btn" id="minimizedPrevBtn" title="上一首">⏮️</button>
+                <button class="minimized-control-btn" id="minimizedPlayPauseBtn" title="播放/暂停">▶️</button>
+                <button class="minimized-control-btn" id="minimizedNextBtn" title="下一首">⏭️</button>
+                <button class="minimized-control-btn" id="minimizedRestoreBtn" title="还原">⬆️</button>
+                <button class="minimized-control-btn minimized-close-btn" id="minimizedCloseBtn" title="关闭">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设置面板 -->
+    <div class="settings-panel hidden" id="settingsPanel">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3>设置</h3>
+                <button class="close-btn" id="closeSettings" aria-label="关闭设置">✕</button>
+            </div>
+            
+            <div class="settings-body">
+                <!-- 名言设置 -->
+                <div class="setting-group">
+                    <h4>名言设置</h4>
+                    <div class="setting-item">
+                        <label for="quoteInterval">自动切换间隔（秒）：</label>
+                        <input type="number" id="quoteInterval" min="5" max="300" value="30">
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn secondary" id="viewFavorites">查看收藏</button>
+                        <button class="btn secondary" id="exportFavorites">导出收藏</button>
+                    </div>
+                </div>
+                
+                <!-- 音效设置 -->
+                <div class="setting-group">
+                    <h4>音效设置</h4>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="heartbeatSound"> 心跳音效
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="tickSound"> 滴答音效
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="completionSound" checked> 完成提示音
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- 音乐设置 -->
+                <div class="setting-group">
+                    <h4>音乐设置</h4>
+                    <div class="setting-item">
+                        <button class="btn primary" id="openBilibiliDownloader">
+                            <span class="btn-icon">🎬</span>
+                            从B站添加音乐/视频
+                        </button>
+                        <small style="color: var(--text-muted); margin-left: 10px;">快速下载B站音乐或视频到本地</small>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn secondary" id="regenerateMusicList">
+                            <span class="btn-icon">🔄</span>
+                            重新生成音乐列表
+                        </button>
+                        <div style="margin-left: 10px; color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;">
+                            <div>📝 添加音乐后操作步骤：</div>
+                            <div style="margin-top: 4px;">1. 运行脚本生成列表（双击 <strong>生成音乐列表.bat</strong> 或运行 <strong>node generate-music-list.js</strong>）</div>
+                            <div style="margin-top: 4px;">2. 脚本会自动扫描 <strong>music/学习/</strong> 和 <strong>music/休息/</strong> 两个文件夹</div>
+                            <div style="margin-top: 4px;">3. 点击此按钮刷新页面音乐列表</div>
+                            <div style="margin-top: 8px; color: var(--accent-primary);">💡 提示：也可以在各模式页面使用🔄按钮分别刷新学习/休息音乐</div>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn secondary" id="clearMusicCache">清除音乐缓存</button>
+                        <small style="color: var(--text-muted); margin-left: 10px;">清除本地缓存，重新加载</small>
+                    </div>
+                </div>
+                
+                <!-- 其他设置 -->
+                <div class="setting-group">
+                    <h4>其他设置</h4>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="reducedMotion"> 减少动画
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn danger" id="resetSettings">重置所有设置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 完成提示弹窗 -->
+    <div class="completion-modal hidden" id="completionModal">
+        <div class="modal-content">
+            <div class="completion-animation">
+                <div class="fireworks"></div>
+                <div class="completion-text">
+                    <h2>🎉 专注完成！</h2>
+                    <p>恭喜你完成了专注时间！</p>
+                </div>
+            </div>
+            <div class="completion-actions">
+                <button class="btn primary" id="continueSession">继续专注15分钟</button>
+                <button class="btn secondary" id="takeBreak">休息一下</button>
+                <button class="btn secondary" id="closeCompletion">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 收藏名言弹窗 -->
+    <div class="favorites-modal hidden" id="favoritesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>收藏的名言</h3>
+                <button class="close-btn" id="closeFavorites" aria-label="关闭收藏">✕</button>
+            </div>
+            <div class="favorites-list" id="favoritesList">
+                <!-- 动态生成收藏列表 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 通知 -->
+    <div class="toast hidden" id="toast">
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="tickAudio" preload="auto">
+        <source src="assets/audio/tick.mp3" type="audio/mpeg">
+        <source src="assets/audio/tick.ogg" type="audio/ogg">
+    </audio>
+    <audio id="heartbeatAudio" preload="auto">
+        <source src="assets/audio/heartbeat.mp3" type="audio/mpeg">
+        <source src="assets/audio/heartbeat.ogg" type="audio/ogg">
+    </audio>
+    <audio id="completionAudio" preload="auto">
+        <source src="assets/audio/completion.mp3" type="audio/mpeg">
+        <source src="assets/audio/completion.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- 音乐播放器 -->
+    <audio id="musicAudio" preload="auto">
+    </audio>
+
+    <!-- B站下载器弹窗 -->
+    <div class="bilibili-downloader-modal hidden" id="bilibiliDownloaderModal">
+        <div class="downloader-modal-overlay" id="downloaderModalOverlay"></div>
+        <div class="downloader-modal-content">
+            <div class="downloader-modal-header">
+                <div class="downloader-header-left">
+                    <span class="downloader-icon">🎬</span>
+                    <h2>B站音乐/视频下载器</h2>
+                </div>
+                <button class="downloader-close-btn" id="closeBilibiliDownloader" aria-label="关闭下载器">
+                    <span>✕</span>
+                </button>
+            </div>
+            <div class="downloader-modal-body">
+                <iframe 
+                    id="bilibiliDownloaderFrame"
+                    src="http://localhost:5000" 
+                    frameborder="0"
+                    allow="clipboard-read; clipboard-write"
+                    sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads"
+                    title="B站下载器">
+                </iframe>
+                <div class="downloader-loading" id="downloaderLoading">
+                    <div class="loading-spinner"></div>
+                    <p>正在加载下载器...</p>
+                </div>
+                <div class="downloader-error hidden" id="downloaderError">
+                    <div class="error-icon">⚠️</div>
+                    <h3>无法连接到下载器服务</h3>
+                    <p>请确保已启动服务器（双击 <strong>启动服务器.bat</strong>）</p>
+                    <p>下载器服务地址：<a href="http://localhost:5000" target="_blank">http://localhost:5000</a></p>
+                    <button class="btn primary" id="retryDownloader">重试</button>
+                </div>
+            </div>
+            <div class="downloader-modal-footer">
+                <div class="downloader-tips">
+                    <span class="tip-icon">💡</span>
+                    <span class="tip-text">下载完成后，请点击"重新生成音乐列表"按钮刷新</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    
+    <!-- PWA Service Worker 注册 -->
+    <script>
+        // 注册 Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker 注册成功:', registration.scope);
+                        
+                        // 检查更新
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // 新版本可用
+                                    if (confirm('发现新版本！是否立即更新？')) {
+                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('❌ Service Worker 注册失败:', error);
+                    });
+                
+                // 监听 Service Worker 控制器变化
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    console.log('🔄 Service Worker 已更新');
+                });
+            });
+        }
+        
+        // PWA 安装提示
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // 可以在这里显示自定义的安装按钮
+            console.log('💡 PWA 可以安装到设备');
+            
+            // 显示一个提示（可选）
+            const installTip = document.createElement('div');
+            installTip.className = 'install-tip';
+            installTip.innerHTML = `
+                <div style="position: fixed; bottom: 20px; right: 20px; background: var(--bg-secondary); 
+                     padding: 15px 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                     z-index: 10000; display: flex; align-items: center; gap: 12px; max-width: 300px;">
+                    <span style="font-size: 24px;">📱</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; margin-bottom: 4px;">安装应用到桌面</div>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary);">像原生APP一样使用</div>
+                    </div>
+                    <button onclick="installPWA()" style="background: var(--accent-primary); color: white; 
+                            border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                        安装
+                    </button>
+                    <button onclick="this.parentElement.remove()" style="background: transparent; border: none; 
+                            font-size: 20px; cursor: pointer; padding: 4px;">×</button>
+                </div>
+            `;
+            document.body.appendChild(installTip);
+            
+            // 5秒后自动隐藏
+            setTimeout(() => {
+                if (installTip.parentElement) {
+                    installTip.style.transition = 'opacity 0.3s';
+                    installTip.style.opacity = '0';
+                    setTimeout(() => installTip.remove(), 300);
+                }
+            }, 10000);
+        });
+        
+        // PWA 安装函数
+        window.installPWA = async () => {
+            if (!deferredPrompt) {
+                alert('当前浏览器不支持安装，请使用 Chrome/Edge/Safari 浏览器');
+                return;
+            }
+            
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                console.log('✅ 用户接受了安装');
+            } else {
+                console.log('❌ 用户取消了安装');
+            }
+            
+            deferredPrompt = null;
+            document.querySelector('.install-tip')?.remove();
+        };
+        
+        // 检测是否已安装
+        window.addEventListener('appinstalled', () => {
+            console.log('🎉 PWA 安装成功！');
+            deferredPrompt = null;
+            document.querySelector('.install-tip')?.remove();
+        });
+    </script>
+</body>
+</html>
