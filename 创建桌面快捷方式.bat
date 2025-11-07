@@ -13,9 +13,8 @@ set "PROJECT_DIR=%~dp0"
 REM Set the target bat file
 set "BAT_FILE=%PROJECT_DIR%quickstart.bat"
 
-REM Get Desktop path
-for /f "tokens=3*" %%a in ('reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v Desktop') do set DESKTOP=%%b
-call set DESKTOP=%DESKTOP%
+REM Get Desktop path (using environment variable, more reliable)
+set "DESKTOP=%USERPROFILE%\Desktop"
 
 REM Check if target file exists
 if not exist "%BAT_FILE%" (
@@ -32,7 +31,19 @@ echo.
 
 REM Create shortcut using PowerShell
 echo Creating shortcut...
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%DESKTOP%\CountdownApp.lnk'); $s.TargetPath = '%BAT_FILE%'; $s.WorkingDirectory = '%PROJECT_DIR%'; $s.Description = 'Countdown Focus App'; $s.Save()"
+
+REM Check if ICO icon exists (preferred)
+if exist "%PROJECT_DIR%assets\icon-512.ico" (
+    echo Using custom ICO icon...
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%DESKTOP%\CountdownApp.lnk'); $s.TargetPath = '%BAT_FILE%'; $s.WorkingDirectory = '%PROJECT_DIR%'; $s.Description = 'Countdown Focus App'; $s.IconLocation = '%PROJECT_DIR%assets\icon-512.ico,0'; $s.Save()"
+) else if exist "%PROJECT_DIR%assets\icon-192.png" (
+    echo Using PNG icon...
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%DESKTOP%\CountdownApp.lnk'); $s.TargetPath = '%BAT_FILE%'; $s.WorkingDirectory = '%PROJECT_DIR%'; $s.Description = 'Countdown Focus App'; $s.IconLocation = '%PROJECT_DIR%assets\icon-192.png,0'; $s.Save()"
+) else (
+    echo Using default icon...
+    echo TIP: Visit https://convertico.com/ to create ICO icon
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%DESKTOP%\CountdownApp.lnk'); $s.TargetPath = '%BAT_FILE%'; $s.WorkingDirectory = '%PROJECT_DIR%'; $s.Description = 'Countdown Focus App'; $s.Save()"
+)
 
 if not exist "%DESKTOP%\CountdownApp.lnk" (
     echo.
