@@ -9,17 +9,40 @@ echo      Countdown App - Starting
 echo ========================================
 echo.
 
-REM Check Node.js first (better compatibility)
+REM Check Python first (needed for Bilibili downloader)
+python --version >nul 2>&1
+if %errorlevel%==0 (
+    echo [1/3] Python detected
+    echo [2/3] Starting Bilibili Downloader backend...
+    
+    REM Check if Flask backend exists
+    if exist "%~dp0爬取B站原视频\app.py" (
+        REM Start Bilibili downloader in new window
+        start "Bilibili-Downloader-Backend" cmd /k "title Bilibili Downloader Backend ^& cd /d "%~dp0爬取B站原视频" ^& python app.py"
+        echo       Backend started on port 5000
+        timeout /t 2 /nobreak >nul
+    ) else (
+        echo       Backend not found, skipping...
+    )
+) else (
+    echo [1/3] Python not found - Bilibili downloader disabled
+    echo       Install Python: https://www.python.org/downloads/
+)
+
+echo [3/3] Starting frontend server...
+echo.
+
+REM Check Node.js for frontend
 node --version >nul 2>&1
 if %errorlevel%==0 (
     echo Node.js detected - will use Node.js server
     goto check_port
 )
 
-REM Check Python as fallback
+REM Check Python as fallback for frontend
 python --version >nul 2>&1
 if not %errorlevel%==0 (
-    echo Neither Node.js nor Python found
+    echo Neither Node.js nor Python found for frontend
     echo.
     echo Please install one of:
     echo   Node.js: https://nodejs.org/ (Recommended)
@@ -61,9 +84,11 @@ if %errorlevel%==0 (
         echo Server started successfully
         echo ========================================
         echo.
-        echo URL: http://localhost:8000
+        echo Frontend: http://localhost:8000
+        echo Backend:  http://localhost:5000 (if Python installed)
         echo.
-        echo Press Ctrl+C to stop
+        echo Press Ctrl+C to stop frontend server
+        echo Close backend window to stop backend
         echo.
         echo ========================================
         echo.
@@ -79,9 +104,11 @@ echo ========================================
 echo Server started successfully
 echo ========================================
 echo.
-echo URL: http://localhost:8000
+echo Frontend: http://localhost:8000
+echo Backend:  http://localhost:5000 (if Python installed)
 echo.
-echo Press Ctrl+C to stop
+echo Press Ctrl+C to stop frontend server
+echo Close backend window to stop backend
 echo.
 echo Note: Python server does not support video seeking
 echo       Install Node.js for full features
