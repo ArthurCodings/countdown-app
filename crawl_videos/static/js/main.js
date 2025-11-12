@@ -150,42 +150,80 @@ function initCookieTabs() {
 async function getVideoInfo() {
     const url = elements.videoUrl.value.trim();
     const cookies = getCookieValue();
-    
+
     if (!url) {
         showMessage('请输入视频URL', 'error');
         return;
     }
-    
+
     // 验证URL格式
     if (!url.includes('bilibili.com')) {
         showMessage('请输入有效的B站视频链接', 'error');
         return;
     }
-    
+
     showLoading();
     elements.getInfoBtn.disabled = true;
-    
+
     try {
         const data = await apiCall('/api/video_info', {
             url: url,
             cookies: cookies
         }, 'POST');
-        
+
         if (data.error) {
             throw new Error(data.error);
         }
-        
+
         // 显示视频信息
         elements.videoTitle.textContent = data.title;
         elements.videoUploader.innerHTML = `<i class="fas fa-user"></i> ${data.uploader}`;
         elements.videoDuration.innerHTML = `<i class="fas fa-clock"></i> ${formatDuration(data.duration)}`;
         elements.videoViews.innerHTML = `<i class="fas fa-eye"></i> ${formatNumber(data.view_count)} 播放`;
-        
+
+        // 动态生成视频质量选项
+        const videoQualitySelect = document.getElementById('video-quality');
+        const audioQualitySelect = document.getElementById('audio-quality');
+
+        // 清空现有选项（保留默认选项）
+        videoQualitySelect.innerHTML = `
+            <option value="best">最高质量</option>
+            <option value="worst">最低质量</option>
+        `;
+        audioQualitySelect.innerHTML = `
+            <option value="best">最高质量</option>
+            <option value="worst">最低质量</option>
+        `;
+
+        // 添加可用的视频格式选项
+        if (data.video_formats && data.video_formats.length > 0) {
+            data.video_formats.forEach(format => {
+                if (format.height) {
+                    const option = document.createElement('option');
+                    option.value = `${format.height}p`;
+                    option.textContent = `${format.height}P`;
+                    videoQualitySelect.appendChild(option);
+                }
+            });
+        }
+
+        // 添加可用的音频格式选项
+        if (data.audio_formats && data.audio_formats.length > 0) {
+            data.audio_formats.forEach(format => {
+                if (format.abr) {
+                    const option = document.createElement('option');
+                    option.value = `${Math.round(format.abr)}k`;
+                    option.textContent = `${Math.round(format.abr)}Kbps`;
+                    audioQualitySelect.appendChild(option);
+                }
+            });
+        }
+
         elements.videoInfo.style.display = 'block';
         elements.qualitySection.style.display = 'block';
-        
+
         showMessage('视频信息获取成功', 'success');
-        
+
     } catch (error) {
         showMessage(`获取视频信息失败: ${error.message}`, 'error');
         elements.videoInfo.style.display = 'none';
@@ -678,6 +716,9 @@ function updateFileDisplay() {
                          <a href="/api/download_file/${encodeURIComponent(file.name)}" class="btn btn-primary" download>
                              <i class="fas fa-download"></i> 下载
                          </a>
+                         <button class="btn btn-danger delete-btn" onclick="deleteFile('${encodeURIComponent(file.name)}')">
+                             <i class="fas fa-trash"></i> 删除
+                         </button>
                      </div>
                 </div>
             `;
@@ -744,7 +785,46 @@ function updatePagination() {
 // 高亮搜索词的辅助函数
 function highlightSearchTerm(text, searchTerm) {
     if (!searchTerm) return text;
-    
+
     const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
     return text.replace(regex, '<span class="search-highlight">$1</span>');
+}
+
+// 删除文件功能
+async function deleteFile(filename) {
+    // 确认删除
+    const decodedFilename = decodeURIComponent(filename);
+    if (!confirm(`确定要删除文件 "${decodedFilename}" 吗？此操作不可撤销。`)) {
+        return;
+    }
+
+    try {
+        // 显示加载状态
+        showMessage('正在删除文件...', 'info');
+
+        // 调用删除文件API
+        const response = await fetch('/api/delete_file', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                filename: decodedFilename
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showMessage('✅ 文件删除成功', 'success');
+            // 刷新文件列表
+            refreshFilesList();
+        } else {
+            throw new Error(result.error || '删除失败');
+        }
+
+    } catch (error) {
+        showMessage(`❌ 删除失败: ${error.message}`, 'error');
+        console.error('删除文件失败:', error);
+    }
 }

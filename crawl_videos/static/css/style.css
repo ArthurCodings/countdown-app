@@ -222,6 +222,17 @@ textarea {
     transform: none;
 }
 
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333, #bd2130);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220,53,69,0.3);
+}
+
 /* 帮助文本 */
 .help-text {
     font-size: 0.9rem;

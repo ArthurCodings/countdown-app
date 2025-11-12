@@ -1002,7 +1002,7 @@ class CountdownApp {
             if (currentDate) {
                 this.showCustomCountdown();
                 this.startCustomCountdown();
-            } else {
+        } else {
                 this.showCustomActions();
             }
         } else {

@@ -73,9 +73,34 @@ class BilibiliDownloader:
     
     def _build_format_selector(self, quality, audio_quality):
         """构建通用的格式选择策略"""
-        # 不指定格式，让yt-dlp自动选择最佳格式
-        # 这样可以避免格式不匹配的问题
-        return None
+        format_selector = None
+
+        # 视频质量选择
+        if quality == "best":
+            video_selector = "bestvideo"
+        elif quality == "worst":
+            video_selector = "worstvideo"
+        elif quality in ["240p", "360p", "480p", "720p", "1080p", "1440p", "2160p"]:
+            # 使用yt-dlp的分辨率选择语法
+            video_selector = f"bestvideo[height<={quality[:-1]}]"
+        else:
+            video_selector = "bestvideo"
+
+        # 音频质量选择
+        if audio_quality == "best":
+            audio_selector = "bestaudio"
+        elif audio_quality == "worst":
+            audio_selector = "worstaudio"
+        elif audio_quality in ["64k", "128k", "192k", "256k", "320k"]:
+            # 使用yt-dlp的音频比特率选择语法
+            audio_selector = f"bestaudio[abr<={audio_quality[:-1]}]"
+        else:
+            audio_selector = "bestaudio"
+
+        # 组合视频和音频选择器
+        format_selector = f"{video_selector}+{audio_selector}"
+
+        return format_selector
     
     def get_video_info(self, url):
         """获取视频信息"""
@@ -137,13 +162,42 @@ class BilibiliDownloader:
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=False)
-                
+
+                # 提取可用的视频和音频格式信息
+                available_formats = info.get('formats', [])
+                video_formats = []
+                audio_formats = []
+
+                # 分离视频和音频格式
+                for fmt in available_formats:
+                    if fmt.get('vcodec') != 'none' and fmt.get('height'):
+                        # 视频格式
+                        video_formats.append({
+                            'format_id': fmt.get('format_id'),
+                            'height': fmt.get('height'),
+                            'ext': fmt.get('ext'),
+                            'filesize': fmt.get('filesize')
+                        })
+                    elif fmt.get('acodec') != 'none' and fmt.get('abr'):
+                        # 音频格式
+                        audio_formats.append({
+                            'format_id': fmt.get('format_id'),
+                            'abr': fmt.get('abr'),
+                            'ext': fmt.get('ext'),
+                            'filesize': fmt.get('filesize')
+                        })
+
+                # 去重并排序
+                video_formats = sorted(list({v['height']: v for v in video_formats}.values()), key=lambda x: x['height'] or 0)
+                audio_formats = sorted(list({v['abr']: v for v in audio_formats}.values()), key=lambda x: x['abr'] or 0)
+
                 return {
                     'title': info.get('title', '未知标题'),
                     'duration': info.get('duration', 0),
                     'uploader': info.get('uploader', '未知UP主'),
                     'view_count': info.get('view_count', 0),
-                    'formats': info.get('formats', [])
+                    'video_formats': video_formats,
+                    'audio_formats': audio_formats
                 }
         except Exception as e:
             print(f"❌ 获取视频信息失败: {str(e)}")
@@ -157,13 +211,35 @@ class BilibiliDownloader:
                 except Exception as e:
                     print(f"⚠️  清理Cookie文件失败: {str(e)}")
     
+    def _check_file_conflict(self, title, ext):
+        """检查文件冲突并返回合适的文件名"""
+        downloads_dir = 'downloads'
+        base_filename = f"{title}.{ext}"
+        file_path = os.path.join(downloads_dir, base_filename)
+
+        # 如果文件不存在，直接返回基础文件名
+        if not os.path.exists(file_path):
+            return base_filename
+
+        # 文件已存在，添加时间戳和序号以确保唯一性
+        import time
+        timestamp = int(time.time())
+        counter = 1
+        while True:
+            # 格式：标题_时间戳_序号.扩展名
+            new_filename = f"{title}_{timestamp}_{counter}.{ext}"
+            new_file_path = os.path.join(downloads_dir, new_filename)
+            if not os.path.exists(new_file_path):
+                return new_filename
+            counter += 1
+
     def download_video(self, url, quality='best', audio_quality='best', download_id=None):
         """下载视频"""
         global download_status
-        
+
         if download_id is None:
             download_id = f"download_{int(time.time())}"
-        
+
         download_status[download_id] = {
             'status': 'starting',
             'progress': '0%',
@@ -172,7 +248,7 @@ class BilibiliDownloader:
             'filename': '',
             'error': None
         }
-        
+
         print(f"开始下载: {download_id} - URL: {url}")
         print(f"质量设置: 视频={quality}, 音频={audio_quality}")
         
@@ -230,8 +306,25 @@ class BilibiliDownloader:
             # 设置ffmpeg路径
             ffmpeg_path = os.path.join(os.getcwd(), 'ffmpeg-master-latest-win64-gpl', 'bin', 'ffmpeg.exe')
             
+            # 获取视频标题用于文件名冲突检测
+            video_title = "download"  # 默认标题
+            try:
+                # 先获取视频信息来确定标题
+                with yt_dlp.YoutubeDL({'quiet': True, 'proxy': ''}) as temp_ydl:
+                    info = temp_ydl.extract_info(url, download=False)
+                    video_title = info.get('title', video_title)
+                    # 清理文件名中的特殊字符
+                    video_title = "".join(c for c in video_title if c.isalnum() or c in (' ', '-', '_')).rstrip()
+            except:
+                pass
+
+            # 检查文件冲突并获取合适的文件名
+            safe_title = video_title or "download"
+            file_ext = "mp4"  # 默认扩展名
+            final_filename = self._check_file_conflict(safe_title, file_ext)
+
             ydl_opts = {
-                'outtmpl': 'downloads/%(title)s.%(ext)s',
+                'outtmpl': f'downloads/{final_filename}',
                 'progress_hooks': [progress_hook],
                 'merge_output_format': 'mp4',
                 'proxy': '',  # 禁用代理
@@ -550,6 +643,49 @@ def move_file():
         return jsonify({'success': False, 'error': str(e)})
 
 
+@app.route('/api/delete_file', methods=['POST'])
+def delete_file():
+    """删除下载的文件"""
+    try:
+        data = request.json
+        filename = data.get('filename')
+
+        if not filename:
+            return jsonify({'success': False, 'error': '缺少文件名参数'})
+
+        # 构建文件路径
+        file_path = os.path.join('downloads', filename)
+
+        # 安全检查：确保文件在downloads目录下
+        downloads_dir = os.path.abspath('downloads')
+        file_path_abs = os.path.abspath(file_path)
+
+        if not file_path_abs.startswith(downloads_dir):
+            return jsonify({'success': False, 'error': '无效的文件路径'})
+
+        # 检查文件是否存在
+        if not os.path.exists(file_path):
+            return jsonify({'success': False, 'error': '文件不存在'})
+
+        # 删除文件
+        os.remove(file_path)
+        print(f"✅ 文件已删除: {filename}")
+
+        return jsonify({
+            'success': True,
+            'message': f'文件 "{filename}" 已成功删除'
+        })
+
+    except PermissionError:
+        error_msg = '没有权限删除文件'
+        print(f"❌ 删除文件失败: {error_msg}")
+        return jsonify({'success': False, 'error': error_msg})
+    except Exception as e:
+        error_msg = str(e)
+        print(f"❌ 删除文件失败: {error_msg}")
+        return jsonify({'success': False, 'error': error_msg})
+
+
 @app.route('/api/trigger_music_list_generation', methods=['POST'])
 def trigger_music_list_generation():
     """触发音乐列表生成脚本"""
@@ -557,13 +693,13 @@ def trigger_music_list_generation():
         # 获取项目根目录
         root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         script_path = os.path.join(root_dir, 'generate-music-list.js')
-        
+
         # 检查脚本是否存在
         if not os.path.exists(script_path):
             return jsonify({'success': False, 'error': '脚本文件不存在'})
-        
+
         print(f"🔄 正在运行音乐列表生成脚本...")
-        
+
         # 运行 Node.js 脚本
         result = subprocess.run(
             ['node', script_path],
@@ -573,22 +709,22 @@ def trigger_music_list_generation():
             timeout=30,
             encoding='utf-8'
         )
-        
+
         if result.returncode == 0:
             print(f"✅ 音乐列表生成成功")
             return jsonify({
-                'success': True, 
+                'success': True,
                 'message': '音乐列表已更新',
                 'output': result.stdout
             })
         else:
             print(f"❌ 脚本执行失败: {result.stderr}")
             return jsonify({
-                'success': False, 
+                'success': False,
                 'error': '脚本执行失败',
                 'details': result.stderr
             })
-            
+
     except subprocess.TimeoutExpired:
         print(f"❌ 脚本执行超时")
         return jsonify({'success': False, 'error': '脚本执行超时（30秒）'})
