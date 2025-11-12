@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2025-11-09T08:26:24.854Z",
+  "generatedAt": "2025-11-12T02:06:11.991Z",
   "generatedBy": "generate-music-list.js",
   "study": [
     {
@@ -73,6 +73,14 @@
       "duration": "未知",
       "format": "mp4",
       "fileSize": 34318835,
+      "type": "video"
+    },
+    {
+      "name": "【4K修复】Sweety - 樱花草 MV 2160P修复版",
+      "file": "music/学习/【4K修复】Sweety - 樱花草 MV 2160P修复版.mp4",
+      "duration": "未知",
+      "format": "mp4",
+      "fileSize": 18703148,
       "type": "video"
     },
     {
@@ -154,6 +162,14 @@
       "format": "mp3",
       "fileSize": 3319592,
       "type": "audio"
+    },
+    {
+      "name": "锦零、音阙诗听——《空山新雨后》MV",
+      "file": "music/学习/锦零、音阙诗听——《空山新雨后》MV.mp4",
+      "duration": "未知",
+      "format": "mp4",
+      "fileSize": 6423882,
+      "type": "video"
     },
     {
       "name": "菊花台-周杰伦",
@@ -258,6 +274,14 @@
       "format": "mp3",
       "fileSize": 3115517,
       "type": "audio"
+    },
+    {
+      "name": "熊出没《伴你成长》混剪MV 跟着欢快的旋律，感受成长的意义",
+      "file": "music/学习/熊出没《伴你成长》混剪MV 跟着欢快的旋律，感受成长的意义.mp4",
+      "duration": "未知",
+      "format": "mp4",
+      "fileSize": 13264084,
+      "type": "video"
     },
     {
       "name": "悬溺（无损）",
@@ -991,8 +1015,8 @@
     }
   ],
   "summary": {
-    "studyCount": 75,
+    "studyCount": 78,
     "restCount": 48,
-    "totalCount": 123
+    "totalCount": 126
   }
 }

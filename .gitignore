@@ -128,6 +128,12 @@ Icon
 .env.*.local
 config.local.js
 
+# Cookie 和认证信息（敏感数据）
+*cookie*.txt
+cookie.txt
+个人cookie.txt
+crawl_videos/cookie.txt
+
 # ================================
 # 大文件和资源
 # ================================

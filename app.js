@@ -3349,8 +3349,10 @@ class CountdownApp {
         }
         
         this.shuffleQuotes();
-        this.updateQuoteTagsFilter();
-        this.filterQuotesByTag(this.currentTag);
+        // 标签过滤功能已隐藏
+        // this.updateQuoteTagsFilter();
+        this.filteredQuotes = [...this.quotes];
+        this.currentTag = 'all';
         
         console.log(`加载了 ${this.quotes.length} 条名言`);
     }
@@ -3431,6 +3433,12 @@ class CountdownApp {
         // 打字机效果
         this.typeWriterEffect(this.elements.quoteText, quote.text);
         
+        // 显示标签
+        const tagsInline = document.getElementById('quoteTagsInline');
+        if (tagsInline && quote.tags) {
+            tagsInline.textContent = quote.tags.join(' · ');
+        }
+        
         setTimeout(() => {
             this.elements.quoteAuthor.textContent = `— ${quote.author}`;
             this.updateFavoriteButton();
@@ -3438,15 +3446,22 @@ class CountdownApp {
     }
     
     typeWriterEffect(element, text) {
+        // 清除之前的定时器，防止重复
+        if (this.typeWriterTimer) {
+            clearInterval(this.typeWriterTimer);
+            this.typeWriterTimer = null;
+        }
+        
         element.textContent = '';
         let i = 0;
         
-        const timer = setInterval(() => {
+        this.typeWriterTimer = setInterval(() => {
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 i++;
             } else {
-                clearInterval(timer);
+                clearInterval(this.typeWriterTimer);
+                this.typeWriterTimer = null;
             }
         }, 30);
     }
