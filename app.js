@@ -5,8 +5,122 @@
 class CountdownApp {
     constructor() {
         this.currentMode = 'focus'; // 'focus' | 'rest' | 'exam' | 'clock' | 'stats'
-        this.currentTheme = 'dark'; // 'dark' | 'light' | 'romantic' | 'warm' | 'forest' | 'ocean'
+        this.currentTheme = 'dark'; // 主题名称
         this.currentDigitStyle = 'tech'; // 'tech' | 'cute' | 'elegant' | 'playful'
+        
+        // 主题数据
+        this.themeData = {
+            'dark': {
+                name: '深邃夜空',
+                category: 'normal',
+                description: '深邃的夜空配色，适合夜间使用',
+                previewColor: 'linear-gradient(135deg, #00d4ff 0%, #ff6b35 100%)'
+            },
+            'light': {
+                name: '清新白昼',
+                category: 'normal',
+                description: '清新的白色调，适合日间使用',
+                previewColor: 'linear-gradient(135deg, #007bff 0%, #fd7e14 100%)'
+            },
+            'romantic': {
+                name: '浪漫粉樱',
+                category: 'normal',
+                description: '浪漫的粉色系，温馨舒适',
+                previewColor: 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)'
+            },
+            'warm': {
+                name: '温暖日落',
+                category: 'normal',
+                description: '温暖的橙色调，如夕阳般温馨',
+                previewColor: 'linear-gradient(135deg, #ff7f50 0%, #ff4500 100%)'
+            },
+            'forest': {
+                name: '森林绿意',
+                category: 'normal',
+                description: '清新的绿色调，自然舒适',
+                previewColor: 'linear-gradient(135deg, #32cd32 0%, #228b22 100%)'
+            },
+            'ocean': {
+                name: '海洋蓝调',
+                category: 'normal',
+                description: '深邃的蓝色调，如海洋般宁静',
+                previewColor: 'linear-gradient(135deg, #00bfff 0%, #1e90ff 100%)'
+            },
+            'spring-festival': {
+                name: '春节',
+                category: 'festival',
+                description: '喜庆的红色与金色，充满节日氛围',
+                previewColor: 'linear-gradient(135deg, #DC143C 0%, #FFD700 100%)'
+            },
+            'lantern-festival': {
+                name: '元宵节',
+                category: 'festival',
+                description: '温暖的红色与橙色，如灯笼般明亮',
+                previewColor: 'linear-gradient(135deg, #FF6347 0%, #FF8C00 100%)'
+            },
+            'qingming-festival': {
+                name: '清明节',
+                category: 'festival',
+                description: '清新的青绿色调，如春雨般宁静',
+                previewColor: 'linear-gradient(135deg, #3D5A5A 0%, #98FB98 100%)'
+            },
+            'dragon-boat-festival': {
+                name: '端午节',
+                category: 'festival',
+                description: '绿色与金色，如龙舟般活力',
+                previewColor: 'linear-gradient(135deg, #32CD32 0%, #FFD700 100%)'
+            },
+            'qixi-festival': {
+                name: '七夕',
+                category: 'festival',
+                description: '浪漫的粉色与紫色，如星空般梦幻',
+                previewColor: 'linear-gradient(135deg, #FF69B4 0%, #8B00FF 100%)'
+            },
+            'mid-autumn-festival': {
+                name: '中秋节',
+                category: 'festival',
+                description: '深蓝与金色，如满月般明亮',
+                previewColor: 'linear-gradient(135deg, #2d1b4d 0%, #FFD700 100%)'
+            },
+            'double-ninth-festival': {
+                name: '重阳节',
+                category: 'festival',
+                description: '温暖的橙色与黄色，如菊花般优雅',
+                previewColor: 'linear-gradient(135deg, #FF8C00 0%, #FFD700 100%)'
+            },
+            'winter-solstice': {
+                name: '冬至',
+                category: 'festival',
+                description: '深色与暖色，如冬日暖阳',
+                previewColor: 'linear-gradient(135deg, #2F2F2F 0%, #FFA500 100%)'
+            },
+            'christmas': {
+                name: '圣诞节',
+                category: 'festival',
+                description: '绿色、红色与金色，充满节日欢乐',
+                previewColor: 'linear-gradient(135deg, #1a4d2e 0%, #DC143C 100%)'
+            },
+            'halloween': {
+                name: '万圣节',
+                category: 'festival',
+                description: '橙色、黑色与紫色，神秘而有趣',
+                previewColor: 'linear-gradient(135deg, #FF8C00 0%, #8B00FF 100%)'
+            },
+            'valentine': {
+                name: '情人节',
+                category: 'festival',
+                description: '浪漫的粉色与红色，充满爱意',
+                previewColor: 'linear-gradient(135deg, #FF1493 0%, #FF69B4 100%)'
+            },
+            'easter': {
+                name: '复活节',
+                category: 'festival',
+                description: '粉色、绿色与黄色，如彩蛋般缤纷',
+                previewColor: 'linear-gradient(135deg, #FF69B4 0%, #98FB98 100%)'
+            }
+        };
+        
+        this.recentThemes = this.getRecentThemes();
         this.isCountdownActive = false;
         this.isRestCountdownActive = false;
         this.isPaused = false;
@@ -125,6 +239,7 @@ class CountdownApp {
         this.setupMessageListener(); // 设置消息监听
         this.setupVideoPlayerEvents(); // 设置视频播放器事件（只调用一次）
         await this.loadQuotes();
+        this.renderThemeDropdown(); // 渲染主题下拉框
         await this.initializeMusicSystem();
         this.initializeDateTime();
         this.startClock();
@@ -394,6 +509,9 @@ class CountdownApp {
     applyTheme() {
         document.documentElement.setAttribute('data-theme', this.currentTheme);
         
+        // 应用自定义背景图片（如果有）
+        this.applyCustomBackground(this.currentTheme);
+        
         // 更新主题选择器的状态
         if (this.elements.themeDropdown) {
             const options = this.elements.themeDropdown.querySelectorAll('.theme-option');
@@ -402,23 +520,348 @@ class CountdownApp {
             });
         }
         
+        // 更新主题选择页面的状态
+        const themeCards = document.querySelectorAll('.theme-card');
+        themeCards.forEach(card => {
+            card.classList.toggle('active', card.dataset.theme === this.currentTheme);
+        });
+        
         this.settings.theme = this.currentTheme;
         this.saveSettings();
     }
     
     changeTheme(themeName) {
-        const themeNames = {
-            'dark': '深邃夜空',
-            'light': '清新白昼',
-            'romantic': '浪漫粉樱',
-            'warm': '温暖日落',
-            'forest': '森林绿意',
-            'ocean': '海洋蓝调'
-        };
+        if (!this.themeData[themeName]) {
+            console.warn(`Unknown theme: ${themeName}`);
+            return;
+        }
         
         this.currentTheme = themeName;
         this.applyTheme();
-        this.showToast(`已切换到${themeNames[themeName]}主题 ✨`);
+        this.updateRecentThemes(themeName);
+        this.renderThemeDropdown();
+        
+        const themeInfo = this.themeData[themeName];
+        this.showToast(`已切换到${themeInfo.name}主题 ✨`);
+    }
+    
+    // ================================
+    // 最近使用主题管理
+    // ================================
+    
+    getRecentThemes() {
+        const saved = localStorage.getItem('countdown-app-recent-themes');
+        if (saved) {
+            try {
+                return JSON.parse(saved);
+            } catch (e) {
+                return [];
+            }
+        }
+        // 默认返回一些主题
+        return ['spring-festival', 'christmas', 'mid-autumn-festival', 'dark', 'light'];
+    }
+    
+    updateRecentThemes(themeName) {
+        // 移除已存在的相同主题
+        this.recentThemes = this.recentThemes.filter(t => t !== themeName);
+        // 添加到开头
+        this.recentThemes.unshift(themeName);
+        // 最多保存10个
+        if (this.recentThemes.length > 10) {
+            this.recentThemes = this.recentThemes.slice(0, 10);
+        }
+        // 保存到localStorage
+        localStorage.setItem('countdown-app-recent-themes', JSON.stringify(this.recentThemes));
+    }
+    
+    // ================================
+    // 主题下拉框渲染
+    // ================================
+    
+    renderThemeDropdown() {
+        const dropdown = this.elements.themeDropdown;
+        if (!dropdown) return;
+        
+        // 清空现有选项（保留"更多"按钮）
+        const moreBtn = dropdown.querySelector('.theme-more-btn');
+        dropdown.innerHTML = '';
+        
+        // 获取最近使用的主题
+        const recentFestival = this.recentThemes.filter(t => 
+            this.themeData[t] && this.themeData[t].category === 'festival'
+        ).slice(0, 3);
+        
+        const recentNormal = this.recentThemes.filter(t => 
+            this.themeData[t] && this.themeData[t].category === 'normal'
+        ).slice(0, 2);
+        
+        // 如果最近使用的主题不足，补充默认主题
+        if (recentFestival.length < 3) {
+            const defaultFestival = ['spring-festival', 'christmas', 'mid-autumn-festival'];
+            defaultFestival.forEach(t => {
+                if (!recentFestival.includes(t) && recentFestival.length < 3) {
+                    recentFestival.push(t);
+                }
+            });
+        }
+        
+        if (recentNormal.length < 2) {
+            const defaultNormal = ['dark', 'light'];
+            defaultNormal.forEach(t => {
+                if (!recentNormal.includes(t) && recentNormal.length < 2) {
+                    recentNormal.push(t);
+                }
+            });
+        }
+        
+        // 渲染最近使用的主题
+        [...recentFestival, ...recentNormal].forEach(themeName => {
+            const themeInfo = this.themeData[themeName];
+            if (!themeInfo) return;
+            
+            const option = document.createElement('div');
+            option.className = `theme-option ${this.currentTheme === themeName ? 'active' : ''}`;
+            option.dataset.theme = themeName;
+            
+            const previewClass = `${themeName}-preview`;
+            option.innerHTML = `
+                <span class="theme-preview ${previewClass}"></span>
+                <span class="theme-name">${themeInfo.name}</span>
+            `;
+            
+            option.addEventListener('click', () => {
+                this.changeTheme(themeName);
+            });
+            
+            dropdown.appendChild(option);
+        });
+        
+        // 添加"更多"按钮
+        if (moreBtn) {
+            dropdown.appendChild(moreBtn);
+        } else {
+            const moreBtnNew = document.createElement('button');
+            moreBtnNew.className = 'theme-more-btn';
+            moreBtnNew.id = 'themeMoreBtn';
+            moreBtnNew.innerHTML = '<span>更多主题...</span>';
+            moreBtnNew.addEventListener('click', () => {
+                this.showThemeSelectionPage();
+            });
+            dropdown.appendChild(moreBtnNew);
+        }
+    }
+    
+    // ================================
+    // 主题选择页面
+    // ================================
+    
+    showThemeSelectionPage() {
+        const page = document.getElementById('themeSelectionPage');
+        if (page) {
+            page.classList.add('active');
+            this.renderThemeSelectionPage();
+        }
+    }
+    
+    hideThemeSelectionPage() {
+        const page = document.getElementById('themeSelectionPage');
+        if (page) {
+            page.classList.remove('active');
+        }
+    }
+    
+    renderThemeSelectionPage() {
+        const normalGrid = document.getElementById('normalThemeGrid');
+        const festivalGrid = document.getElementById('festivalThemeGrid');
+        
+        if (!normalGrid || !festivalGrid) return;
+        
+        // 清空现有内容
+        normalGrid.innerHTML = '';
+        festivalGrid.innerHTML = '';
+        
+        // 渲染普通主题
+        Object.keys(this.themeData).forEach(themeName => {
+            const themeInfo = this.themeData[themeName];
+            if (themeInfo.category !== 'normal') return;
+            
+            const card = this.createThemeCard(themeName, themeInfo);
+            normalGrid.appendChild(card);
+        });
+        
+        // 渲染节日主题
+        Object.keys(this.themeData).forEach(themeName => {
+            const themeInfo = this.themeData[themeName];
+            if (themeInfo.category !== 'festival') return;
+            
+            const card = this.createThemeCard(themeName, themeInfo);
+            festivalGrid.appendChild(card);
+        });
+    }
+    
+    createThemeCard(themeName, themeInfo) {
+        const card = document.createElement('div');
+        card.className = `theme-card ${this.currentTheme === themeName ? 'active' : ''}`;
+        card.dataset.theme = themeName;
+        
+        const previewClass = `${themeName}-preview`;
+        const customBg = this.getCustomBackground(themeName);
+        const hasCustomBg = customBg !== null;
+        
+        // 构建预览区域的样式
+        const previewStyle = hasCustomBg && customBg.dataUrl 
+            ? `style="background-image: url('${customBg.dataUrl}');"`
+            : '';
+        
+        card.innerHTML = `
+            <div class="theme-card-preview ${previewClass}" ${previewStyle}></div>
+            <div class="theme-card-name">${themeInfo.name}</div>
+            <div class="theme-card-description">${themeInfo.description}</div>
+            ${hasCustomBg ? `<div class="theme-card-bg-indicator" title="已设置自定义背景">
+                <span class="indicator-icon">🖼️</span>
+                <span class="indicator-text">自定义背景</span>
+            </div>` : ''}
+            <div class="theme-card-actions">
+                <button class="theme-card-btn" data-theme="${themeName}">应用主题</button>
+            </div>
+            <div class="theme-card-bg-actions">
+                <button class="theme-card-btn-secondary custom-bg-btn" data-theme="${themeName}" title="自定义背景图片">
+                    <span class="btn-icon">${hasCustomBg ? '🖼️' : '📷'}</span>
+                    <span class="btn-text">${hasCustomBg ? '更换背景' : '自定义背景'}</span>
+                </button>
+                ${hasCustomBg ? `<button class="theme-card-btn-secondary reset-bg-btn" data-theme="${themeName}" title="恢复默认背景">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">恢复默认</span>
+                </button>` : ''}
+            </div>
+            <input type="file" accept="image/*" class="theme-bg-file-input" id="bgInput_${themeName}" data-theme="${themeName}" style="display: none;">
+        `;
+        
+        // 点击卡片或按钮应用主题
+        const applyTheme = () => {
+            this.changeTheme(themeName);
+            this.hideThemeSelectionPage();
+        };
+        
+        card.querySelector('.theme-card-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            applyTheme();
+        });
+        
+        // 自定义背景按钮
+        const customBgBtn = card.querySelector('.custom-bg-btn');
+        if (customBgBtn) {
+            customBgBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const fileInput = card.querySelector(`#bgInput_${themeName}`);
+                if (fileInput) {
+                    fileInput.click();
+                }
+            });
+        }
+        
+        // 恢复默认按钮
+        const resetBgBtn = card.querySelector('.reset-bg-btn');
+        if (resetBgBtn) {
+            resetBgBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.resetCustomBackground(themeName);
+            });
+        }
+        
+        // 文件选择处理
+        const fileInput = card.querySelector(`#bgInput_${themeName}`);
+        if (fileInput) {
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    this.setCustomBackground(themeName, file);
+                }
+            });
+        }
+        
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.theme-card-btn') && 
+                !e.target.closest('.custom-bg-btn') && 
+                !e.target.closest('.reset-bg-btn') &&
+                !e.target.closest('.theme-bg-file-input')) {
+                applyTheme();
+            }
+        });
+        
+        return card;
+    }
+    
+    // ================================
+    // 自定义背景图片管理
+    // ================================
+    
+    getCustomBackground(themeName) {
+        const saved = localStorage.getItem(`countdown-app-custom-bg-${themeName}`);
+        if (saved) {
+            try {
+                return JSON.parse(saved);
+            } catch (e) {
+                return null;
+            }
+        }
+        return null;
+    }
+    
+    setCustomBackground(themeName, file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const imageData = {
+                dataUrl: e.target.result,
+                fileName: file.name,
+                fileSize: file.size,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(`countdown-app-custom-bg-${themeName}`, JSON.stringify(imageData));
+            this.applyTheme(); // 重新应用主题以更新背景
+            this.renderThemeSelectionPage(); // 重新渲染页面以更新按钮状态
+            this.showToast(`已为${this.themeData[themeName].name}设置自定义背景 ✨`);
+        };
+        reader.onerror = () => {
+            this.showToast('背景图片加载失败，请重试', 'error');
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    resetCustomBackground(themeName) {
+        localStorage.removeItem(`countdown-app-custom-bg-${themeName}`);
+        this.applyTheme(); // 重新应用主题以恢复默认背景
+        this.renderThemeSelectionPage(); // 重新渲染页面以更新按钮状态
+        this.showToast(`已恢复${this.themeData[themeName].name}的默认背景 ✨`);
+    }
+    
+    applyCustomBackground(themeName) {
+        const customBg = this.getCustomBackground(themeName);
+        const body = document.body;
+        
+        if (customBg && customBg.dataUrl) {
+            // 应用自定义背景图片，覆盖CSS中定义的背景
+            // 自定义背景图片应该在最上层
+            const computedStyle = window.getComputedStyle(body);
+            const cssBg = computedStyle.backgroundImage;
+            
+            // 如果CSS中有背景，将自定义图片放在最前面
+            if (cssBg && cssBg !== 'none') {
+                body.style.backgroundImage = `url('${customBg.dataUrl}'), ${cssBg}`;
+            } else {
+                body.style.backgroundImage = `url('${customBg.dataUrl}')`;
+            }
+            body.style.backgroundSize = 'cover, cover';
+            body.style.backgroundPosition = 'center, center';
+            body.style.backgroundRepeat = 'no-repeat, no-repeat';
+        } else {
+            // 没有自定义背景，清除内联样式，使用CSS默认背景
+            body.style.backgroundImage = '';
+            body.style.backgroundSize = '';
+            body.style.backgroundPosition = '';
+            body.style.backgroundRepeat = '';
+        }
     }
     
     // ================================
@@ -3976,16 +4419,30 @@ class CountdownApp {
         document.getElementById('exportStatsBtn')?.addEventListener('click', () => this.exportStats());
         document.getElementById('clearStatsBtn')?.addEventListener('click', () => this.clearStats());
         
-        // 主题选择
-        if (this.elements.themeDropdown) {
-            const themeOptions = this.elements.themeDropdown.querySelectorAll('.theme-option');
-            themeOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const theme = option.dataset.theme;
-                    if (theme) {
-                        this.changeTheme(theme);
+        // 主题选择（动态生成，事件在renderThemeDropdown中绑定）
+        // 更多主题按钮
+        const themeMoreBtn = document.getElementById('themeMoreBtn');
+        if (themeMoreBtn) {
+            themeMoreBtn.addEventListener('click', () => {
+                this.showThemeSelectionPage();
+            });
+        }
+        
+        // 主题选择页面返回按钮
+        const themeSelectionBackBtn = document.getElementById('themeSelectionBackBtn');
+        if (themeSelectionBackBtn) {
+            themeSelectionBackBtn.addEventListener('click', () => {
+                this.hideThemeSelectionPage();
+            });
+        }
+        
+        // 点击主题选择页面外部关闭
+        const themeSelectionPage = document.getElementById('themeSelectionPage');
+        if (themeSelectionPage) {
+            themeSelectionPage.addEventListener('click', (e) => {
+                if (e.target === themeSelectionPage) {
+                    this.hideThemeSelectionPage();
                     }
-                });
             });
         }
         

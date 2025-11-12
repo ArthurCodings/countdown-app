@@ -232,6 +232,430 @@
 }
 
 /* ================================
+   节日主题
+   ================================ */
+
+/* 春节主题 */
+[data-theme="spring-festival"] {
+  --bg-primary: #8B0000;
+  --bg-secondary: #DC143C;
+  --bg-tertiary: #B22222;
+  --bg-card: rgba(220, 20, 60, 0.85);
+  --bg-modal: rgba(139, 0, 0, 0.95);
+  
+  --text-primary: #FFD700;
+  --text-secondary: #FFA500;
+  --text-muted: #CD853F;
+  
+  --accent-primary: #FFD700;
+  --accent-secondary: #FF4500;
+  --accent-success: #FFA500;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF6347;
+  
+  --gradient-primary: linear-gradient(135deg, #DC143C 0%, #FFD700 100%);
+  --gradient-neon: linear-gradient(135deg, #DC143C 0%, #FFA500 50%, #FFD700 100%);
+  --gradient-countdown: linear-gradient(135deg, #FF4500 0%, #DC143C 100%);
+  --gradient-exam: linear-gradient(135deg, #DC143C 0%, #FFD700 50%, #FFA500 100%);
+  
+  --border-primary: rgba(255, 215, 0, 0.5);
+  --border-secondary: rgba(255, 165, 0, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.5);
+  --shadow-card: 0 8px 32px rgba(139, 0, 0, 0.5);
+  --shadow-neon: 0 0 40px rgba(255, 215, 0, 0.7);
+  
+  --particle-color-1: rgba(255, 215, 0, 0.2);
+  --particle-color-2: rgba(255, 165, 0, 0.2);
+  --particle-color-3: rgba(220, 20, 60, 0.2);
+}
+
+/* 元宵节主题 */
+[data-theme="lantern-festival"] {
+  --bg-primary: #8B2500;
+  --bg-secondary: #FF6347;
+  --bg-tertiary: #CD5C5C;
+  --bg-card: rgba(255, 99, 71, 0.85);
+  --bg-modal: rgba(139, 37, 0, 0.95);
+  
+  --text-primary: #FFE4B5;
+  --text-secondary: #FFA500;
+  --text-muted: #CD853F;
+  
+  --accent-primary: #FF6347;
+  --accent-secondary: #FF8C00;
+  --accent-success: #FFA500;
+  --accent-warning: #FFD700;
+  --accent-danger: #DC143C;
+  
+  --gradient-primary: linear-gradient(135deg, #FF6347 0%, #FF8C00 100%);
+  --gradient-neon: linear-gradient(135deg, #FF6347 0%, #FFA500 50%, #FF8C00 100%);
+  --gradient-countdown: linear-gradient(135deg, #FF8C00 0%, #DC143C 100%);
+  --gradient-exam: linear-gradient(135deg, #FF6347 0%, #FFA500 50%, #FFD700 100%);
+  
+  --border-primary: rgba(255, 99, 71, 0.5);
+  --border-secondary: rgba(255, 140, 0, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 99, 71, 0.5);
+  --shadow-card: 0 8px 32px rgba(139, 37, 0, 0.5);
+  --shadow-neon: 0 0 40px rgba(255, 99, 71, 0.7);
+  
+  --particle-color-1: rgba(255, 99, 71, 0.2);
+  --particle-color-2: rgba(255, 140, 0, 0.2);
+  --particle-color-3: rgba(255, 165, 0, 0.2);
+}
+
+/* 清明节主题 */
+[data-theme="qingming-festival"] {
+  --bg-primary: #2F4F4F;
+  --bg-secondary: #3D5A5A;
+  --bg-tertiary: #4A6A6A;
+  --bg-card: rgba(61, 90, 90, 0.85);
+  --bg-modal: rgba(47, 79, 79, 0.95);
+  
+  --text-primary: #98FB98;
+  --text-secondary: #90EE90;
+  --text-muted: #8FBC8F;
+  
+  --accent-primary: #98FB98;
+  --accent-secondary: #7FFFD4;
+  --accent-success: #00FF7F;
+  --accent-warning: #ADFF2F;
+  --accent-danger: #FF6347;
+  
+  --gradient-primary: linear-gradient(135deg, #3D5A5A 0%, #98FB98 100%);
+  --gradient-neon: linear-gradient(135deg, #3D5A5A 0%, #7FFFD4 50%, #98FB98 100%);
+  --gradient-countdown: linear-gradient(135deg, #7FFFD4 0%, #00FF7F 100%);
+  --gradient-exam: linear-gradient(135deg, #98FB98 0%, #7FFFD4 50%, #9370db 100%);
+  
+  --border-primary: rgba(152, 251, 152, 0.5);
+  --border-secondary: rgba(127, 255, 212, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(152, 251, 152, 0.5);
+  --shadow-card: 0 8px 32px rgba(47, 79, 79, 0.5);
+  --shadow-neon: 0 0 40px rgba(152, 251, 152, 0.7);
+  
+  --particle-color-1: rgba(152, 251, 152, 0.2);
+  --particle-color-2: rgba(127, 255, 212, 0.2);
+  --particle-color-3: rgba(0, 255, 127, 0.2);
+}
+
+/* 端午节主题 */
+[data-theme="dragon-boat-festival"] {
+  --bg-primary: #2F4F2F;
+  --bg-secondary: #3D6B3D;
+  --bg-tertiary: #4A7A4A;
+  --bg-card: rgba(61, 107, 61, 0.85);
+  --bg-modal: rgba(47, 79, 47, 0.95);
+  
+  --text-primary: #ADFF2F;
+  --text-secondary: #9AFF9A;
+  --text-muted: #8FBC8F;
+  
+  --accent-primary: #32CD32;
+  --accent-secondary: #FFD700;
+  --accent-success: #00FF7F;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF6347;
+  
+  --gradient-primary: linear-gradient(135deg, #32CD32 0%, #FFD700 100%);
+  --gradient-neon: linear-gradient(135deg, #32CD32 0%, #ADFF2F 50%, #FFD700 100%);
+  --gradient-countdown: linear-gradient(135deg, #ADFF2F 0%, #32CD32 100%);
+  --gradient-exam: linear-gradient(135deg, #32CD32 0%, #FFD700 50%, #FFA500 100%);
+  
+  --border-primary: rgba(50, 205, 50, 0.5);
+  --border-secondary: rgba(255, 215, 0, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(50, 205, 50, 0.5);
+  --shadow-card: 0 8px 32px rgba(47, 79, 47, 0.5);
+  --shadow-neon: 0 0 40px rgba(50, 205, 50, 0.7);
+  
+  --particle-color-1: rgba(50, 205, 50, 0.2);
+  --particle-color-2: rgba(173, 255, 47, 0.2);
+  --particle-color-3: rgba(255, 215, 0, 0.2);
+}
+
+/* 七夕主题 */
+[data-theme="qixi-festival"] {
+  --bg-primary: #4B0082;
+  --bg-secondary: #8B00FF;
+  --bg-tertiary: #9370DB;
+  --bg-card: rgba(139, 0, 255, 0.85);
+  --bg-modal: rgba(75, 0, 130, 0.95);
+  
+  --text-primary: #FFB6C1;
+  --text-secondary: #FF69B4;
+  --text-muted: #DA70D6;
+  
+  --accent-primary: #FF69B4;
+  --accent-secondary: #DA70D6;
+  --accent-success: #FFB6C1;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF1493;
+  
+  --gradient-primary: linear-gradient(135deg, #FF69B4 0%, #8B00FF 100%);
+  --gradient-neon: linear-gradient(135deg, #FF69B4 0%, #DA70D6 50%, #8B00FF 100%);
+  --gradient-countdown: linear-gradient(135deg, #DA70D6 0%, #FF1493 100%);
+  --gradient-exam: linear-gradient(135deg, #FF69B4 0%, #DA70D6 50%, #9370db 100%);
+  
+  --border-primary: rgba(255, 105, 180, 0.5);
+  --border-secondary: rgba(218, 112, 214, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 105, 180, 0.5);
+  --shadow-card: 0 8px 32px rgba(75, 0, 130, 0.5);
+  --shadow-neon: 0 0 40px rgba(255, 105, 180, 0.7);
+  
+  --particle-color-1: rgba(255, 105, 180, 0.2);
+  --particle-color-2: rgba(218, 112, 214, 0.2);
+  --particle-color-3: rgba(139, 0, 255, 0.2);
+}
+
+/* 中秋节主题 */
+[data-theme="mid-autumn-festival"] {
+  --bg-primary: #1a0d2e;
+  --bg-secondary: #2d1b4d;
+  --bg-tertiary: #3d2b5d;
+  --bg-card: rgba(45, 27, 77, 0.85);
+  --bg-modal: rgba(26, 13, 46, 0.95);
+  
+  --text-primary: #FFD700;
+  --text-secondary: #FFA500;
+  --text-muted: #DAA520;
+  
+  --accent-primary: #FFD700;
+  --accent-secondary: #FFA500;
+  --accent-success: #FFD700;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF6347;
+  
+  --gradient-primary: linear-gradient(135deg, #2d1b4d 0%, #FFD700 100%);
+  --gradient-neon: linear-gradient(135deg, #2d1b4d 0%, #FFA500 50%, #FFD700 100%);
+  --gradient-countdown: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+  --gradient-exam: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #9370db 100%);
+  
+  --border-primary: rgba(255, 215, 0, 0.5);
+  --border-secondary: rgba(255, 165, 0, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.5);
+  --shadow-card: 0 8px 32px rgba(26, 13, 46, 0.5);
+  --shadow-neon: 0 0 40px rgba(255, 215, 0, 0.7);
+  
+  --particle-color-1: rgba(255, 215, 0, 0.2);
+  --particle-color-2: rgba(255, 165, 0, 0.2);
+  --particle-color-3: rgba(218, 165, 32, 0.2);
+}
+
+/* 重阳节主题 */
+[data-theme="double-ninth-festival"] {
+  --bg-primary: #8B4513;
+  --bg-secondary: #CD853F;
+  --bg-tertiary: #DEB887;
+  --bg-card: rgba(205, 133, 63, 0.85);
+  --bg-modal: rgba(139, 69, 19, 0.95);
+  
+  --text-primary: #FFD700;
+  --text-secondary: #FFA500;
+  --text-muted: #DAA520;
+  
+  --accent-primary: #FF8C00;
+  --accent-secondary: #FFD700;
+  --accent-success: #FFA500;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF6347;
+  
+  --gradient-primary: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);
+  --gradient-neon: linear-gradient(135deg, #FF8C00 0%, #FFA500 50%, #FFD700 100%);
+  --gradient-countdown: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+  --gradient-exam: linear-gradient(135deg, #FF8C00 0%, #FFD700 50%, #FFA500 100%);
+  
+  --border-primary: rgba(255, 140, 0, 0.5);
+  --border-secondary: rgba(255, 215, 0, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 140, 0, 0.5);
+  --shadow-card: 0 8px 32px rgba(139, 69, 19, 0.5);
+  --shadow-neon: 0 0 40px rgba(255, 140, 0, 0.7);
+  
+  --particle-color-1: rgba(255, 140, 0, 0.2);
+  --particle-color-2: rgba(255, 215, 0, 0.2);
+  --particle-color-3: rgba(255, 165, 0, 0.2);
+}
+
+/* 冬至主题 */
+[data-theme="winter-solstice"] {
+  --bg-primary: #1C1C1C;
+  --bg-secondary: #2F2F2F;
+  --bg-tertiary: #3F3F3F;
+  --bg-card: rgba(47, 47, 47, 0.85);
+  --bg-modal: rgba(28, 28, 28, 0.95);
+  
+  --text-primary: #E0E0E0;
+  --text-secondary: #FFA500;
+  --text-muted: #B0B0B0;
+  
+  --accent-primary: #FFA500;
+  --accent-secondary: #FFD700;
+  --accent-success: #FFD700;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF6347;
+  
+  --gradient-primary: linear-gradient(135deg, #2F2F2F 0%, #FFA500 100%);
+  --gradient-neon: linear-gradient(135deg, #2F2F2F 0%, #FFD700 50%, #FFA500 100%);
+  --gradient-countdown: linear-gradient(135deg, #FFA500 0%, #FF6347 100%);
+  --gradient-exam: linear-gradient(135deg, #FFA500 0%, #FFD700 50%, #9370db 100%);
+  
+  --border-primary: rgba(255, 165, 0, 0.5);
+  --border-secondary: rgba(255, 215, 0, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 165, 0, 0.5);
+  --shadow-card: 0 8px 32px rgba(28, 28, 28, 0.5);
+  --shadow-neon: 0 0 40px rgba(255, 165, 0, 0.7);
+  
+  --particle-color-1: rgba(255, 165, 0, 0.2);
+  --particle-color-2: rgba(255, 215, 0, 0.2);
+  --particle-color-3: rgba(224, 224, 224, 0.2);
+}
+
+/* 圣诞节主题 */
+[data-theme="christmas"] {
+  --bg-primary: #0d2818;
+  --bg-secondary: #1a4d2e;
+  --bg-tertiary: #2d5a3d;
+  --bg-card: rgba(26, 77, 46, 0.85);
+  --bg-modal: rgba(13, 40, 24, 0.95);
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFD700;
+  --text-muted: #C0C0C0;
+  
+  --accent-primary: #DC143C;
+  --accent-secondary: #FFD700;
+  --accent-success: #228B22;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF6347;
+  
+  --gradient-primary: linear-gradient(135deg, #1a4d2e 0%, #DC143C 100%);
+  --gradient-neon: linear-gradient(135deg, #1a4d2e 0%, #FFD700 50%, #DC143C 100%);
+  --gradient-countdown: linear-gradient(135deg, #DC143C 0%, #FF6347 100%);
+  --gradient-exam: linear-gradient(135deg, #DC143C 0%, #FFD700 50%, #9370db 100%);
+  
+  --border-primary: rgba(220, 20, 60, 0.5);
+  --border-secondary: rgba(255, 215, 0, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(220, 20, 60, 0.5);
+  --shadow-card: 0 8px 32px rgba(13, 40, 24, 0.5);
+  --shadow-neon: 0 0 40px rgba(220, 20, 60, 0.7);
+  
+  --particle-color-1: rgba(220, 20, 60, 0.2);
+  --particle-color-2: rgba(255, 215, 0, 0.2);
+  --particle-color-3: rgba(34, 139, 34, 0.2);
+}
+
+/* 万圣节主题 */
+[data-theme="halloween"] {
+  --bg-primary: #1a0d1a;
+  --bg-secondary: #2d1b2d;
+  --bg-tertiary: #3d2b3d;
+  --bg-card: rgba(45, 27, 45, 0.85);
+  --bg-modal: rgba(26, 13, 26, 0.95);
+  
+  --text-primary: #FF8C00;
+  --text-secondary: #FFA500;
+  --text-muted: #8B4513;
+  
+  --accent-primary: #FF8C00;
+  --accent-secondary: #8B00FF;
+  --accent-success: #FFA500;
+  --accent-warning: #FFD700;
+  --accent-danger: #DC143C;
+  
+  --gradient-primary: linear-gradient(135deg, #FF8C00 0%, #8B00FF 100%);
+  --gradient-neon: linear-gradient(135deg, #FF8C00 0%, #FFA500 50%, #8B00FF 100%);
+  --gradient-countdown: linear-gradient(135deg, #FFA500 0%, #DC143C 100%);
+  --gradient-exam: linear-gradient(135deg, #FF8C00 0%, #8B00FF 50%, #9370db 100%);
+  
+  --border-primary: rgba(255, 140, 0, 0.5);
+  --border-secondary: rgba(139, 0, 255, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 140, 0, 0.5);
+  --shadow-card: 0 8px 32px rgba(26, 13, 26, 0.5);
+  --shadow-neon: 0 0 40px rgba(255, 140, 0, 0.7);
+  
+  --particle-color-1: rgba(255, 140, 0, 0.2);
+  --particle-color-2: rgba(139, 0, 255, 0.2);
+  --particle-color-3: rgba(255, 165, 0, 0.2);
+}
+
+/* 情人节主题 */
+[data-theme="valentine"] {
+  --bg-primary: #2d1b2d;
+  --bg-secondary: #3d2b3d;
+  --bg-tertiary: #4d3b4d;
+  --bg-card: rgba(61, 43, 61, 0.85);
+  --bg-modal: rgba(45, 27, 45, 0.95);
+  
+  --text-primary: #FFB6C1;
+  --text-secondary: #FF69B4;
+  --text-muted: #DA70D6;
+  
+  --accent-primary: #FF1493;
+  --accent-secondary: #FF69B4;
+  --accent-success: #FFB6C1;
+  --accent-warning: #FFD700;
+  --accent-danger: #DC143C;
+  
+  --gradient-primary: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+  --gradient-neon: linear-gradient(135deg, #FF1493 0%, #FFB6C1 50%, #FF69B4 100%);
+  --gradient-countdown: linear-gradient(135deg, #FF69B4 0%, #DC143C 100%);
+  --gradient-exam: linear-gradient(135deg, #FF1493 0%, #FF69B4 50%, #9370db 100%);
+  
+  --border-primary: rgba(255, 20, 147, 0.5);
+  --border-secondary: rgba(255, 105, 180, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 20, 147, 0.5);
+  --shadow-card: 0 8px 32px rgba(45, 27, 45, 0.5);
+  --shadow-neon: 0 0 40px rgba(255, 20, 147, 0.7);
+  
+  --particle-color-1: rgba(255, 20, 147, 0.2);
+  --particle-color-2: rgba(255, 105, 180, 0.2);
+  --particle-color-3: rgba(255, 182, 193, 0.2);
+}
+
+/* 复活节主题 */
+[data-theme="easter"] {
+  --bg-primary: #FFF8DC;
+  --bg-secondary: #FFE4E1;
+  --bg-tertiary: #F0E68C;
+  --bg-card: rgba(255, 228, 225, 0.9);
+  --bg-modal: rgba(255, 248, 220, 0.95);
+  
+  --text-primary: #8B008B;
+  --text-secondary: #9370DB;
+  --text-muted: #BA55D3;
+  
+  --accent-primary: #FF69B4;
+  --accent-secondary: #98FB98;
+  --accent-success: #32CD32;
+  --accent-warning: #FFD700;
+  --accent-danger: #FF6347;
+  
+  --gradient-primary: linear-gradient(135deg, #FF69B4 0%, #98FB98 100%);
+  --gradient-neon: linear-gradient(135deg, #FF69B4 0%, #FFD700 50%, #98FB98 100%);
+  --gradient-countdown: linear-gradient(135deg, #98FB98 0%, #32CD32 100%);
+  --gradient-exam: linear-gradient(135deg, #FF69B4 0%, #FFD700 50%, #9370db 100%);
+  
+  --border-primary: rgba(255, 105, 180, 0.5);
+  --border-secondary: rgba(152, 251, 152, 0.3);
+  
+  --shadow-glow: 0 0 30px rgba(255, 105, 180, 0.4);
+  --shadow-card: 0 8px 32px rgba(255, 248, 220, 0.3);
+  --shadow-neon: 0 0 40px rgba(255, 105, 180, 0.6);
+  
+  --particle-color-1: rgba(255, 105, 180, 0.2);
+  --particle-color-2: rgba(152, 251, 152, 0.2);
+  --particle-color-3: rgba(255, 215, 0, 0.2);
+}
+
+/* ================================
    Base Styles & Reset
    ================================ */
 
@@ -254,6 +678,813 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* 节日主题背景和装饰 */
+[data-theme="spring-festival"] body {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 165, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+}
+
+/* 春节 - 大红灯笼装饰 */
+[data-theme="spring-festival"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='120' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 0 L70 40 L60 80 L50 40 Z' fill='%23DC143C' opacity='0.6'/%3E%3Cellipse cx='60' cy='80' rx='25' ry='35' fill='%23DC143C' opacity='0.7'/%3E%3Cellipse cx='60' cy='80' rx='20' ry='30' fill='%23FFD700' opacity='0.5'/%3E%3Cpath d='M60 115 L65 130 L60 145 L55 130 Z' fill='%23DC143C' opacity='0.6'/%3E%3Cpath d='M60 145 L65 155 L60 165 L55 155 Z' fill='%23DC143C' opacity='0.6'/%3E%3Cpath d='M60 165 L70 175 L60 180 L50 175 Z' fill='%23DC143C' opacity='0.6'/%3E%3Cline x1='60' y1='0' x2='60' y2='80' stroke='%23FFD700' stroke-width='2' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 180px 270px;
+  background-position: 10% 10%;
+  animation: floatLanterns 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 春节 - 福字装饰 */
+[data-theme="spring-festival"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='20' y='20' width='160' height='160' fill='%23FFD700' opacity='0.4'/%3E%3Ctext x='100' y='140' font-size='140' font-weight='bold' fill='%23DC143C' opacity='0.5' text-anchor='middle' font-family='serif'%3E福%3C/text%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  background-position: 75% 20%;
+  animation: floatStars 25s ease-in-out infinite;
+  animation-delay: -5s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="lantern-festival"] body {
+  background-image: 
+    radial-gradient(circle at 30% 20%, rgba(255, 99, 71, 0.2) 0%, transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(255, 140, 0, 0.2) 0%, transparent 60%),
+    linear-gradient(135deg, #8B2500 0%, #FF6347 100%);
+}
+
+[data-theme="lantern-festival"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L60 30 L50 60 L40 30 Z' fill='%23FF6347' opacity='0.6'/%3E%3Cellipse cx='50' cy='60' rx='22' ry='32' fill='%23FF6347' opacity='0.7'/%3E%3Cellipse cx='50' cy='60' rx='18' ry='28' fill='%23FF8C00' opacity='0.5'/%3E%3Cpath d='M50 92 L55 110 L50 128 L45 110 Z' fill='%23FF6347' opacity='0.6'/%3E%3Cpath d='M50 128 L55 138 L50 148 L45 138 Z' fill='%23FF6347' opacity='0.6'/%3E%3Cpath d='M50 148 L60 150 L50 150 L40 150 Z' fill='%23FF6347' opacity='0.6'/%3E%3C/svg%3E");
+  background-size: 200px 300px;
+  background-position: 15% 15%;
+  animation: floatLanterns 22s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="lantern-festival"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L60 30 L50 60 L40 30 Z' fill='%23FF6347' opacity='0.5'/%3E%3Cellipse cx='50' cy='60' rx='22' ry='32' fill='%23FF6347' opacity='0.6'/%3E%3Cellipse cx='50' cy='60' rx='18' ry='28' fill='%23FF8C00' opacity='0.4'/%3E%3Cpath d='M50 92 L55 110 L50 128 L45 110 Z' fill='%23FF6347' opacity='0.5'/%3E%3Cpath d='M50 128 L55 138 L50 148 L45 138 Z' fill='%23FF6347' opacity='0.5'/%3E%3Cpath d='M50 148 L60 150 L50 150 L40 150 Z' fill='%23FF6347' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 180px 270px;
+  background-position: 80% 60%;
+  animation: floatLanterns 26s ease-in-out infinite;
+  animation-delay: -8s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="qingming-festival"] body {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(152, 251, 152, 0.1) 0%, transparent 70%),
+    linear-gradient(135deg, #2F4F4F 0%, #3D5A5A 100%);
+}
+
+/* 清明节 - 雨滴和柳叶 */
+[data-theme="qingming-festival"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='20' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0 Q5 10 10 20 Q15 10 10 0' fill='%2398FB98' opacity='0.4'/%3E%3Ccircle cx='10' cy='25' r='2.5' fill='%2398FB98' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 100px 200px;
+  background-position: 0 0;
+  animation: rainDrops 18s ease-in infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="qingming-festival"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='30' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0 Q10 20 15 40 Q20 20 15 0' fill='%2398FB98' opacity='0.3'/%3E%3Cpath d='M15 40 Q10 50 15 60 Q20 50 15 40' fill='%2398FB98' opacity='0.3'/%3E%3Cpath d='M15 60 Q10 70 15 80 Q20 70 15 60' fill='%2398FB98' opacity='0.3'/%3E%3Ccircle cx='15' cy='45' r='2' fill='%2398FB98' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 150px 400px;
+  background-position: 85% 10%;
+  animation: floatPetals 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dragon-boat-festival"] body {
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(50, 205, 50, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #2F4F2F 0%, #3D6B3D 100%);
+}
+
+/* 端午节 - 龙舟和粽子 */
+[data-theme="dragon-boat-festival"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='200' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40 Q50 20 100 40 Q150 60 200 40' stroke='%2332CD32' stroke-width='3' fill='none' opacity='0.4'/%3E%3Cpath d='M30 40 L50 25 L50 55 Z' fill='%2332CD32' opacity='0.5'/%3E%3Cpath d='M70 40 L90 25 L90 55 Z' fill='%23FFD700' opacity='0.5'/%3E%3Cpath d='M110 40 L130 25 L130 55 Z' fill='%2332CD32' opacity='0.5'/%3E%3Cpath d='M150 40 L170 25 L170 55 Z' fill='%23FFD700' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 400px 160px;
+  background-position: 10% 70%;
+  animation: floatWaves 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dragon-boat-festival"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='60' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L40 20 L30 40 L20 20 Z' fill='%2332CD32' opacity='0.5'/%3E%3Cpath d='M30 40 L40 50 L30 60 L20 50 Z' fill='%2332CD32' opacity='0.5'/%3E%3Cpath d='M30 60 L40 70 L30 80 L20 70 Z' fill='%2332CD32' opacity='0.5'/%3E%3Cline x1='30' y1='0' x2='30' y2='40' stroke='%23FFD700' stroke-width='2' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 120px 160px;
+  background-position: 75% 20%;
+  animation: floatLanterns 20s ease-in-out infinite;
+  animation-delay: -6s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="qixi-festival"] body {
+  background-image: 
+    radial-gradient(circle at 30% 30%, rgba(255, 105, 180, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(139, 0, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #4B0082 0%, #8B00FF 100%);
+}
+
+/* 七夕 - 星星和鹊桥 */
+[data-theme="qixi-festival"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 5 L45 30 L70 30 L50 45 L55 70 L40 55 L25 70 L30 45 L10 30 L35 30 Z' fill='%23FF69B4' opacity='0.5'/%3E%3Ccircle cx='40' cy='40' r='4' fill='%23FFD700' opacity='0.6'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-position: 15% 20%;
+  animation: twinkleStars 12s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="qixi-festival"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='300' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q75 5 150 20 Q225 35 300 20' stroke='%23FF69B4' stroke-width='3' fill='none' opacity='0.4'/%3E%3Cpath d='M0 20 Q75 5 150 20 Q225 35 300 20' stroke='%23DA70D6' stroke-width='2' fill='none' opacity='0.3'/%3E%3Ccircle cx='75' cy='12' r='3' fill='%23FF69B4' opacity='0.5'/%3E%3Ccircle cx='150' cy='20' r='3' fill='%23FF69B4' opacity='0.5'/%3E%3Ccircle cx='225' cy='28' r='3' fill='%23FF69B4' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 600px 80px;
+  background-position: 20% 60%;
+  animation: floatWaves 30s ease-in-out infinite;
+  animation-delay: -5s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="mid-autumn-festival"] body {
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+    linear-gradient(135deg, #1a0d2e 0%, #2d1b4d 100%);
+}
+
+/* 中秋节 - 圆月和玉兔 */
+[data-theme="mid-autumn-festival"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='150' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='75' cy='75' r='60' fill='%23FFD700' opacity='0.4'/%3E%3Ccircle cx='75' cy='75' r='50' fill='%23FFF8DC' opacity='0.3'/%3E%3Cpath d='M60 75 Q55 70 50 75 Q55 80 60 75' fill='%23FFD700' opacity='0.2'/%3E%3Cpath d='M90 75 Q95 70 100 75 Q95 80 90 75' fill='%23FFD700' opacity='0.2'/%3E%3Cpath d='M75 90 Q70 95 65 90 Q70 85 75 90' fill='%23FFD700' opacity='0.2'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  background-position: 75% 15%;
+  animation: moonGlow 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="mid-autumn-festival"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='80' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='30' r='25' fill='%23FFF8DC' opacity='0.4'/%3E%3Ccircle cx='35' cy='25' r='8' fill='%23FFD700' opacity='0.3'/%3E%3Ccircle cx='45' cy='25' r='8' fill='%23FFD700' opacity='0.3'/%3E%3Cpath d='M40 35 Q35 40 30 35 Q35 30 40 35' fill='%23FFD700' opacity='0.3'/%3E%3Cellipse cx='40' cy='55' rx='15' ry='20' fill='%23FFF8DC' opacity='0.4'/%3E%3Cpath d='M30 60 L25 75 L30 90 L35 75 Z' fill='%23FFF8DC' opacity='0.4'/%3E%3Cpath d='M50 60 L55 75 L50 90 L45 75 Z' fill='%23FFF8DC' opacity='0.4'/%3E%3Cpath d='M40 75 L35 90 L40 100 L45 90 Z' fill='%23FFF8DC' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 160px 200px;
+  background-position: 15% 50%;
+  animation: floatPetals 18s ease-in-out infinite;
+  animation-delay: -4s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="double-ninth-festival"] body {
+  background-image: 
+    radial-gradient(circle at 40% 40%, rgba(255, 140, 0, 0.2) 0%, transparent 60%),
+    radial-gradient(circle at 60% 60%, rgba(255, 215, 0, 0.2) 0%, transparent 60%),
+    linear-gradient(135deg, #8B4513 0%, #CD853F 100%);
+}
+
+/* 重阳节 - 菊花 */
+[data-theme="double-ninth-festival"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='35' fill='%23FF8C00' opacity='0.4'/%3E%3Ccircle cx='50' cy='50' r='25' fill='%23FFD700' opacity='0.5'/%3E%3Cpath d='M50 15 L52 40 L50 50 L48 40 Z' fill='%23FF8C00' opacity='0.5'/%3E%3Cpath d='M50 15 L52 40 L50 50 L48 40 Z' fill='%23FF8C00' opacity='0.5' transform='rotate(45 50 50)'/%3E%3Cpath d='M50 15 L52 40 L50 50 L48 40 Z' fill='%23FF8C00' opacity='0.5' transform='rotate(90 50 50)'/%3E%3Cpath d='M50 15 L52 40 L50 50 L48 40 Z' fill='%23FF8C00' opacity='0.5' transform='rotate(135 50 50)'/%3E%3Cpath d='M50 85 L52 60 L50 50 L48 60 Z' fill='%23FF8C00' opacity='0.5'/%3E%3Cpath d='M50 85 L52 60 L50 50 L48 60 Z' fill='%23FF8C00' opacity='0.5' transform='rotate(45 50 50)'/%3E%3Cpath d='M50 85 L52 60 L50 50 L48 60 Z' fill='%23FF8C00' opacity='0.5' transform='rotate(90 50 50)'/%3E%3Cpath d='M50 85 L52 60 L50 50 L48 60 Z' fill='%23FF8C00' opacity='0.5' transform='rotate(135 50 50)'/%3E%3Cpath d='M50 50 L50 100 L48 110 L52 110 Z' fill='%23FF8C00' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 250px 300px;
+  background-position: 20% 25%;
+  animation: floatPetals 22s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="double-ninth-festival"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='80' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='28' fill='%23FF8C00' opacity='0.35'/%3E%3Ccircle cx='40' cy='40' r='20' fill='%23FFD700' opacity='0.4'/%3E%3Cpath d='M40 12 L41 32 L40 40 L39 32 Z' fill='%23FF8C00' opacity='0.4'/%3E%3Cpath d='M40 12 L41 32 L40 40 L39 32 Z' fill='%23FF8C00' opacity='0.4' transform='rotate(45 40 40)'/%3E%3Cpath d='M40 12 L41 32 L40 40 L39 32 Z' fill='%23FF8C00' opacity='0.4' transform='rotate(90 40 40)'/%3E%3Cpath d='M40 68 L41 48 L40 40 L39 48 Z' fill='%23FF8C00' opacity='0.4'/%3E%3Cpath d='M40 68 L41 48 L40 40 L39 48 Z' fill='%23FF8C00' opacity='0.4' transform='rotate(45 40 40)'/%3E%3Cpath d='M40 50 L40 90 L38 100 L42 100 Z' fill='%23FF8C00' opacity='0.3'/%3E%3C/svg%3E");
+  background-size: 200px 250px;
+  background-position: 75% 60%;
+  animation: floatPetals 26s ease-in-out infinite;
+  animation-delay: -8s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="winter-solstice"] body {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255, 165, 0, 0.1) 0%, transparent 70%),
+    linear-gradient(135deg, #1C1C1C 0%, #2F2F2F 100%);
+}
+
+[data-theme="winter-solstice"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='15' height='15' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.5 0 L9 5 L15 5 L10.5 7.5 L12 12 L7.5 10.5 L3 12 L4.5 7.5 L0 5 L6 5 Z' fill='%23FFFFFF' opacity='0.25'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+  background-position: 0 0;
+  animation: snowFall 25s ease-in infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="winter-solstice"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='12' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 0 L7 4 L12 4 L8.5 6 L9.5 9 L6 8 L2.5 9 L3.5 6 L0 4 L5 4 Z' fill='%23FFFFFF' opacity='0.2'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  background-position: 60px 0;
+  animation: snowFall 30s ease-in infinite;
+  animation-delay: -8s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="christmas"] body {
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(220, 20, 60, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #0d2818 0%, #1a4d2e 100%);
+}
+
+/* 圣诞节 - 圣诞树和雪花 */
+[data-theme="christmas"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='120' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 0 L80 50 L60 50 L40 50 Z' fill='%23228B22' opacity='0.6'/%3E%3Cpath d='M60 40 L90 90 L60 90 L30 90 Z' fill='%23228B22' opacity='0.6'/%3E%3Cpath d='M60 80 L100 130 L60 130 L20 130 Z' fill='%23228B22' opacity='0.6'/%3E%3Crect x='55' y='130' width='10' height='50' fill='%238B4513' opacity='0.5'/%3E%3Ccircle cx='50' cy='60' r='4' fill='%23DC143C' opacity='0.7'/%3E%3Ccircle cx='70' cy='100' r='4' fill='%23FFD700' opacity='0.7'/%3E%3Ccircle cx='40' cy='110' r='4' fill='%23DC143C' opacity='0.7'/%3E%3Cpath d='M60 0 L65 15 L60 20 L55 15 Z' fill='%23FFD700' opacity='0.8'/%3E%3C/svg%3E");
+  background-size: 240px 360px;
+  background-position: 80% 40%;
+  animation: floatLanterns 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="christmas"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='25' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.5 0 L15 8 L25 8 L17.5 12 L20 20 L12.5 15 L5 20 L7.5 12 L0 8 L10 8 Z' fill='%23FFFFFF' opacity='0.4'/%3E%3Ccircle cx='12.5' cy='10' r='2.5' fill='%23FFD700' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  background-position: 0 0;
+  animation: snowFall 22s ease-in infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="halloween"] body {
+  background-image: 
+    radial-gradient(circle at 30% 30%, rgba(255, 140, 0, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(139, 0, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #1a0d1a 0%, #2d1b2d 100%);
+}
+
+/* 万圣节 - 南瓜灯和蝙蝠 */
+[data-theme="halloween"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='120' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='60' cy='80' rx='50' ry='55' fill='%23FF8C00' opacity='0.7'/%3E%3Cellipse cx='60' cy='80' rx='45' ry='50' fill='%23FFA500' opacity='0.6'/%3E%3Cpath d='M60 25 Q50 30 45 40 Q40 50 45 60 Q50 70 60 75 Q70 70 75 60 Q80 50 75 40 Q70 30 60 25' fill='%23000000' opacity='0.6'/%3E%3Cpath d='M50 70 Q45 75 50 80 Q55 75 50 70' fill='%23000000' opacity='0.6'/%3E%3Cpath d='M70 70 Q75 75 70 80 Q65 75 70 70' fill='%23000000' opacity='0.6'/%3E%3Cpath d='M60 90 Q55 95 50 100 Q55 105 60 100 Q65 105 70 100 Q65 95 60 90' fill='%23000000' opacity='0.5'/%3E%3Cpath d='M60 20 L65 10 L60 5 L55 10 Z' fill='%23228B22' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 240px 280px;
+  background-position: 20% 50%;
+  animation: floatBats 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="halloween"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='80' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0 Q30 15 20 30 Q30 45 40 30 Q50 45 60 30 Q50 15 40 0' fill='%23000000' opacity='0.5'/%3E%3Cpath d='M20 30 Q15 35 20 40 Q25 35 20 30' fill='%23000000' opacity='0.4'/%3E%3Cpath d='M60 30 Q65 35 60 40 Q55 35 60 30' fill='%23000000' opacity='0.4'/%3E%3Cpath d='M40 30 Q35 40 30 50 Q35 45 40 40 Q45 45 50 50 Q45 40 40 30' fill='%23000000' opacity='0.3'/%3E%3C/svg%3E");
+  background-size: 160px 120px;
+  background-position: 75% 20%;
+  animation: floatBats 15s ease-in-out infinite;
+  animation-delay: -6s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="valentine"] body {
+  background-image: 
+    radial-gradient(circle at 40% 40%, rgba(255, 20, 147, 0.2) 0%, transparent 60%),
+    radial-gradient(circle at 60% 60%, rgba(255, 105, 180, 0.2) 0%, transparent 60%),
+    linear-gradient(135deg, #2d1b2d 0%, #3d2b3d 100%);
+}
+
+/* 情人节 - 爱心 */
+[data-theme="valentine"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='90' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 15 Q30 5 20 25 Q20 40 50 70 Q80 40 80 25 Q70 5 50 15' fill='%23FF1493' opacity='0.6'/%3E%3Cpath d='M50 20 Q35 12 25 28 Q25 38 50 65 Q75 38 75 28 Q65 12 50 20' fill='%23FF69B4' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 250px 225px;
+  background-position: 25% 30%;
+  animation: floatHearts 16s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="valentine"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='80' height='72' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 12 Q24 4 16 20 Q16 32 40 56 Q64 32 64 20 Q56 4 40 12' fill='%23FF69B4' opacity='0.5'/%3E%3Cpath d='M40 16 Q28 10 20 22 Q20 30 40 52 Q60 30 60 22 Q52 10 40 16' fill='%23FFB6C1' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 200px 180px;
+  background-position: 70% 60%;
+  animation: floatHearts 20s ease-in-out infinite;
+  animation-delay: -7s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="easter"] body {
+  background-image: 
+    radial-gradient(circle at 30% 30%, rgba(255, 105, 180, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(152, 251, 152, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #FFF8DC 0%, #FFE4E1 100%);
+}
+
+/* 复活节 - 彩蛋和兔子 */
+[data-theme="easter"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='80' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='40' cy='50' rx='25' ry='35' fill='%23FF69B4' opacity='0.5'/%3E%3Cellipse cx='40' cy='50' rx='20' ry='30' fill='%23FFB6C1' opacity='0.4'/%3E%3Ccircle cx='32' cy='42' r='4' fill='%2398FB98' opacity='0.6'/%3E%3Ccircle cx='48' cy='42' r='4' fill='%23FFD700' opacity='0.6'/%3E%3Ccircle cx='40' cy='55' r='4' fill='%23FF69B4' opacity='0.6'/%3E%3Cpath d='M35 60 Q30 65 35 70 Q40 65 35 60' fill='%23FF69B4' opacity='0.5'/%3E%3Cpath d='M45 60 Q50 65 45 70 Q40 65 45 60' fill='%23FF69B4' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 200px 250px;
+  background-position: 20% 30%;
+  animation: floatEggs 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="easter"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='70' height='90' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='35' cy='25' r='20' fill='%23FFF8DC' opacity='0.5'/%3E%3Ccircle cx='30' cy='20' r='8' fill='%23FF69B4' opacity='0.4'/%3E%3Ccircle cx='40' cy='20' r='8' fill='%23FF69B4' opacity='0.4'/%3E%3Cpath d='M35 30 Q30 35 25 30 Q30 25 35 30' fill='%23FF69B4' opacity='0.4'/%3E%3Cellipse cx='35' cy='50' rx='18' ry='25' fill='%23FFF8DC' opacity='0.5'/%3E%3Cpath d='M25 50 L20 65 L25 80 L30 65 Z' fill='%23FFF8DC' opacity='0.5'/%3E%3Cpath d='M45 50 L50 65 L45 80 L40 65 Z' fill='%23FFF8DC' opacity='0.5'/%3E%3Cpath d='M35 75 L30 85 L35 90 L40 85 Z' fill='%23FFF8DC' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 180px 230px;
+  background-position: 75% 50%;
+  animation: floatEggs 22s ease-in-out infinite;
+  animation-delay: -9s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 动画效果 - 更自然流畅 */
+@keyframes floatStars {
+  0% { 
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.1;
+  }
+  25% { 
+    transform: translateY(-15px) translateX(8px) rotate(90deg);
+    opacity: 0.15;
+  }
+  50% { 
+    transform: translateY(-25px) translateX(15px) rotate(180deg);
+    opacity: 0.2;
+  }
+  75% { 
+    transform: translateY(-15px) translateX(8px) rotate(270deg);
+    opacity: 0.15;
+  }
+  100% { 
+    transform: translateY(0) translateX(0) rotate(360deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes floatLanterns {
+  0% { 
+    transform: translateY(0) rotate(-3deg) scale(1);
+    opacity: 0.15;
+  }
+  33% { 
+    transform: translateY(-12px) rotate(2deg) scale(1.05);
+    opacity: 0.2;
+  }
+  66% { 
+    transform: translateY(-8px) rotate(-1deg) scale(0.98);
+    opacity: 0.18;
+  }
+  100% { 
+    transform: translateY(0) rotate(-3deg) scale(1);
+    opacity: 0.15;
+  }
+}
+
+@keyframes rainDrops {
+  0% { 
+    transform: translateY(-20px) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% { 
+    transform: translateY(calc(100vh + 20px)) translateX(30px);
+    opacity: 0;
+  }
+}
+
+@keyframes floatWaves {
+  0% { 
+    transform: translateX(-300px) translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% { 
+    transform: translateX(calc(100vw + 300px)) translateY(-10px);
+    opacity: 0.2;
+  }
+}
+
+@keyframes twinkleStars {
+  0% { 
+    opacity: 0.15;
+    transform: scale(0.9) rotate(0deg);
+  }
+  20% {
+    opacity: 0.3;
+    transform: scale(1.05) rotate(72deg);
+  }
+  40% {
+    opacity: 0.2;
+    transform: scale(0.95) rotate(144deg);
+  }
+  60% {
+    opacity: 0.35;
+    transform: scale(1.1) rotate(216deg);
+  }
+  80% {
+    opacity: 0.25;
+    transform: scale(1.0) rotate(288deg);
+  }
+  100% { 
+    opacity: 0.15;
+    transform: scale(0.9) rotate(360deg);
+  }
+}
+
+@keyframes moonGlow {
+  0% { 
+    opacity: 0.12;
+    transform: scale(0.95);
+    filter: blur(2px);
+  }
+  50% { 
+    opacity: 0.22;
+    transform: scale(1.08);
+    filter: blur(1px);
+  }
+  100% { 
+    opacity: 0.12;
+    transform: scale(0.95);
+    filter: blur(2px);
+  }
+}
+
+@keyframes floatPetals {
+  0% { 
+    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateY(-30vh) translateX(20px) rotate(90deg) scale(0.9);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-50vh) translateX(-15px) rotate(180deg) scale(1.1);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-70vh) translateX(25px) rotate(270deg) scale(0.95);
+    opacity: 0.25;
+  }
+  100% { 
+    transform: translateY(-100vh) translateX(10px) rotate(360deg) scale(1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes snowFall {
+  0% { 
+    transform: translateY(-20px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(calc(50vh - 20px)) translateX(25px) rotate(180deg);
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% { 
+    transform: translateY(calc(100vh + 20px)) translateX(50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes floatBats {
+  0% { 
+    transform: translateY(0) translateX(0) rotate(-5deg) scale(1);
+    opacity: 0.2;
+  }
+  20% {
+    transform: translateY(-20px) translateX(15px) rotate(5deg) scale(1.05);
+    opacity: 0.25;
+  }
+  40% {
+    transform: translateY(-30px) translateX(25px) rotate(-3deg) scale(0.95);
+    opacity: 0.3;
+  }
+  60% {
+    transform: translateY(-20px) translateX(15px) rotate(3deg) scale(1.02);
+    opacity: 0.25;
+  }
+  80% {
+    transform: translateY(-10px) translateX(5px) rotate(-2deg) scale(0.98);
+    opacity: 0.22;
+  }
+  100% { 
+    transform: translateY(0) translateX(0) rotate(-5deg) scale(1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes floatHearts {
+  0% { 
+    transform: translateY(0) scale(0.9) rotate(0deg);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateY(-15px) scale(1.05) rotate(-10deg);
+    opacity: 0.28;
+  }
+  50% {
+    transform: translateY(-25px) scale(1.1) rotate(10deg);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-15px) scale(1.0) rotate(-5deg);
+    opacity: 0.25;
+  }
+  100% { 
+    transform: translateY(0) scale(0.9) rotate(0deg);
+    opacity: 0.2;
+  }
+}
+
+@keyframes floatEggs {
+  0% { 
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.2;
+  }
+  30% {
+    transform: translateY(-20px) rotate(15deg) scale(1.05);
+    opacity: 0.25;
+  }
+  60% {
+    transform: translateY(-35px) rotate(-10deg) scale(0.95);
+    opacity: 0.3;
+  }
+  100% { 
+    transform: translateY(-50px) rotate(5deg) scale(1);
+    opacity: 0.2;
+  }
+}
+
+/* 确保内容在背景之上 */
+.app-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 普通主题背景装饰 */
+[data-theme="dark"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='2' fill='%2300d4ff' opacity='0.1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-position: 0 0;
+  animation: floatStars 30s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="light"] body {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 123, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(253, 126, 20, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+[data-theme="romantic"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10 Q20 20 30 30 Q40 20 30 10' fill='%23ff69b4' opacity='0.1'/%3E%3Ccircle cx='30' cy='30' r='2' fill='%23ff69b4' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  background-position: 0 0;
+  animation: floatHearts 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="warm"] body {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255, 127, 80, 0.1) 0%, transparent 70%),
+    linear-gradient(135deg, #1a0f0a 0%, #2d1f1a 100%);
+}
+
+[data-theme="forest"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='40' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 Q10 15 20 30 Q30 15 20 0' fill='%2332cd32' opacity='0.1'/%3E%3Cpath d='M20 30 L15 50 L20 60 L25 50 Z' fill='%2332cd32' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 200px 300px;
+  background-position: 0 0;
+  animation: floatPetals 25s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="ocean"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='120' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q30 20 60 30 Q90 40 120 30' stroke='%2300bfff' stroke-width='2' fill='none' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 300px 150px;
+  background-position: 0 0;
+  animation: floatWaves 25s linear infinite;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* 可访问性：减少动画 */
@@ -321,6 +1552,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 /* ================================
@@ -575,9 +1808,347 @@ body {
   background: linear-gradient(135deg, #00bfff 0%, #1e90ff 100%);
 }
 
+/* 节日主题预览 */
+.spring-festival-preview {
+  background: linear-gradient(135deg, #DC143C 0%, #FFD700 100%);
+}
+
+.lantern-festival-preview {
+  background: linear-gradient(135deg, #FF6347 0%, #FF8C00 100%);
+}
+
+.qingming-festival-preview {
+  background: linear-gradient(135deg, #3D5A5A 0%, #98FB98 100%);
+}
+
+.dragon-boat-festival-preview {
+  background: linear-gradient(135deg, #32CD32 0%, #FFD700 100%);
+}
+
+.qixi-festival-preview {
+  background: linear-gradient(135deg, #FF69B4 0%, #8B00FF 100%);
+}
+
+.mid-autumn-festival-preview {
+  background: linear-gradient(135deg, #2d1b4d 0%, #FFD700 100%);
+}
+
+.double-ninth-festival-preview {
+  background: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);
+}
+
+.winter-solstice-preview {
+  background: linear-gradient(135deg, #2F2F2F 0%, #FFA500 100%);
+}
+
+.christmas-preview {
+  background: linear-gradient(135deg, #1a4d2e 0%, #DC143C 100%);
+}
+
+.halloween-preview {
+  background: linear-gradient(135deg, #FF8C00 0%, #8B00FF 100%);
+}
+
+.valentine-preview {
+  background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+}
+
+.easter-preview {
+  background: linear-gradient(135deg, #FF69B4 0%, #98FB98 100%);
+}
+
 .theme-name {
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+/* 主题更多按钮 */
+.theme-more-btn {
+  width: 100%;
+  padding: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+  border: 1px dashed var(--border-secondary);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--animation-normal) ease;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.theme-more-btn:hover {
+  border-color: var(--accent-primary);
+  background: var(--bg-secondary);
+  transform: translateY(-2px);
+}
+
+/* 主题选择页面 */
+.theme-selection-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-modal);
+  z-index: 10000;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--animation-normal) ease;
+}
+
+.theme-selection-page.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.theme-selection-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+}
+
+.theme-selection-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+}
+
+.theme-selection-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--animation-normal) ease;
+  font-size: 1rem;
+}
+
+.back-btn:hover {
+  border-color: var(--accent-primary);
+  background: var(--bg-tertiary);
+  transform: translateX(-4px);
+}
+
+.theme-category {
+  margin-bottom: var(--spacing-xl);
+}
+
+.theme-category-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--border-primary);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.theme-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  cursor: pointer;
+  transition: all var(--animation-normal) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.theme-card.active {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-neon);
+}
+
+.theme-card-preview {
+  width: 100%;
+  height: 120px;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-md);
+  border: 2px solid var(--border-secondary);
+}
+
+.theme-card-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.theme-card-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+  min-height: 40px;
+}
+
+/* 自定义背景指示器 */
+.theme-card-bg-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+}
+
+.theme-card-bg-indicator .indicator-icon {
+  font-size: 0.9rem;
+}
+
+.theme-card-bg-indicator .indicator-text {
+  font-weight: 500;
+}
+
+.theme-card-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.theme-card-btn {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--animation-normal) ease;
+  font-size: 0.9rem;
+}
+
+.theme-card-btn:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+/* 自定义背景操作区域 */
+.theme-card-bg-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--border-secondary);
+}
+
+.theme-card-btn-secondary {
+  flex: 1;
+  min-width: 120px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--animation-normal) ease;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+}
+
+.theme-card-btn-secondary:hover {
+  border-color: var(--accent-primary);
+  background: var(--bg-tertiary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.theme-card-btn-secondary .btn-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.theme-card-btn-secondary .btn-text {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.custom-bg-btn {
+  color: var(--accent-primary);
+}
+
+.custom-bg-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.reset-bg-btn {
+  color: var(--accent-secondary);
+}
+
+.reset-bg-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+/* 主题卡片预览区域显示自定义背景 */
+.theme-card-preview {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .theme-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .theme-selection-container {
+    padding: var(--spacing-md);
+  }
+  
+  .theme-selection-title {
+    font-size: 1.5rem;
+  }
+  
+  .theme-card-bg-actions {
+    flex-direction: column;
+  }
+  
+  .theme-card-btn-secondary {
+    min-width: 100%;
+  }
+  
+  .theme-card-bg-indicator {
+    font-size: 0.75rem;
+  }
 }
 
 /* 设置按钮 */

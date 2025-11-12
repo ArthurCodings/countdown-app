@@ -73,30 +73,10 @@
                         <span class="theme-icon">🎨</span>
                     </button>
                     <div class="theme-dropdown" id="themeDropdown">
-                        <div class="theme-option active" data-theme="dark">
-                            <span class="theme-preview dark-preview"></span>
-                            <span class="theme-name">深邃夜空</span>
-                        </div>
-                        <div class="theme-option" data-theme="light">
-                            <span class="theme-preview light-preview"></span>
-                            <span class="theme-name">清新白昼</span>
-                        </div>
-                        <div class="theme-option" data-theme="romantic">
-                            <span class="theme-preview romantic-preview"></span>
-                            <span class="theme-name">浪漫粉樱</span>
-                        </div>
-                        <div class="theme-option" data-theme="warm">
-                            <span class="theme-preview warm-preview"></span>
-                            <span class="theme-name">温暖日落</span>
-                        </div>
-                        <div class="theme-option" data-theme="forest">
-                            <span class="theme-preview forest-preview"></span>
-                            <span class="theme-name">森林绿意</span>
-                        </div>
-                        <div class="theme-option" data-theme="ocean">
-                            <span class="theme-preview ocean-preview"></span>
-                            <span class="theme-name">海洋蓝调</span>
-                        </div>
+                        <!-- 动态生成的主题选项将在这里 -->
+                        <button class="theme-more-btn" id="themeMoreBtn">
+                            <span>更多主题...</span>
+                        </button>
                     </div>
                 </div>
                 
@@ -949,6 +929,35 @@
                 <div class="downloader-tips">
                     <span class="tip-icon">💡</span>
                     <span class="tip-text">下载完成后，请点击"重新生成音乐列表"按钮刷新</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主题选择页面 -->
+    <div class="theme-selection-page" id="themeSelectionPage">
+        <div class="theme-selection-container">
+            <div class="theme-selection-header">
+                <h2 class="theme-selection-title">选择主题</h2>
+                <button class="back-btn" id="themeSelectionBackBtn">
+                    <span>←</span>
+                    <span>返回</span>
+                </button>
+            </div>
+            
+            <!-- 普通主题分类 -->
+            <div class="theme-category">
+                <h3 class="theme-category-title">普通主题</h3>
+                <div class="theme-grid" id="normalThemeGrid">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 节日主题分类 -->
+            <div class="theme-category">
+                <h3 class="theme-category-title">节日主题</h3>
+                <div class="theme-grid" id="festivalThemeGrid">
+                    <!-- 动态生成 -->
                 </div>
             </div>
         </div>
