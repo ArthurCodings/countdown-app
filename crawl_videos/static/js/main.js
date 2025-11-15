@@ -222,6 +222,9 @@ async function getVideoInfo() {
         elements.videoInfo.style.display = 'block';
         elements.qualitySection.style.display = 'block';
 
+        // 重置下载相关状态，确保可以开始新的下载
+        resetDownloadState();
+
         showMessage('视频信息获取成功', 'success');
 
     } catch (error) {
@@ -232,6 +235,30 @@ async function getVideoInfo() {
         hideLoading();
         elements.getInfoBtn.disabled = false;
     }
+}
+
+// 重置下载状态
+function resetDownloadState() {
+    // 清除之前的下载ID
+    currentDownloadId = null;
+    
+    // 清除进度监控定时器
+    if (progressInterval) {
+        clearInterval(progressInterval);
+        progressInterval = null;
+    }
+    
+    // 重置下载按钮状态
+    elements.downloadBtn.disabled = false;
+    
+    // 重置下载进度显示
+    elements.downloadProgress.style.display = 'none';
+    elements.progressFilename.textContent = '准备中...';
+    elements.progressPercent.textContent = '0%';
+    elements.progressFill.style.width = '0%';
+    elements.progressSpeed.textContent = '';
+    elements.progressEta.textContent = '';
+    elements.progressFill.style.background = 'linear-gradient(90deg, #00a1d6, #0078a3)';
 }
 
 // 开始下载

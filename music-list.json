@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2025-11-12T08:20:31.998Z",
+  "generatedAt": "2025-11-15T10:24:17.130Z",
   "generatedBy": "generate-music-list.js",
   "study": [
     {
@@ -33,14 +33,6 @@
       "duration": "未知",
       "format": "mp4",
       "fileSize": 67009850,
-      "type": "video"
-    },
-    {
-      "name": "【4K60FPS】查理·普斯《See You Again》爆火神曲！珍惜身边的人！",
-      "file": "music/学习/【4K60FPS】查理·普斯《See You Again》爆火神曲！珍惜身边的人！.mp4",
-      "duration": "未知",
-      "format": "mp4",
-      "fileSize": 22681642,
       "type": "video"
     },
     {
@@ -124,6 +116,22 @@
       "type": "video"
     },
     {
+      "name": "4K超清周杰伦 - 爱你没差 MV 2160P修复版",
+      "file": "music/学习/4K超清周杰伦 - 爱你没差 MV 2160P修复版.mp4",
+      "duration": "未知",
+      "format": "mp4",
+      "fileSize": 74323427,
+      "type": "video"
+    },
+    {
+      "name": "4K修复张震岳feat蔡健雅思念是一种病MV HiRes无损音质 爷青回",
+      "file": "music/学习/4K修复张震岳feat蔡健雅思念是一种病MV HiRes无损音质 爷青回.mp4",
+      "duration": "未知",
+      "format": "mp4",
+      "fileSize": 20844406,
+      "type": "video"
+    },
+    {
       "name": "彩虹-TimeZ",
       "file": "music/学习/彩虹-TimeZ.mp3",
       "duration": "未知",
@@ -146,6 +154,14 @@
       "format": "mp3",
       "fileSize": 2860980,
       "type": "audio"
+    },
+    {
+      "name": "官方MV周深 光亮紫禁城大型纪录片主题歌",
+      "file": "music/学习/官方MV周深 光亮紫禁城大型纪录片主题歌.mp4",
+      "duration": "未知",
+      "format": "mp4",
+      "fileSize": 27058798,
+      "type": "video"
     },
     {
       "name": "回到过去-周杰伦",
@@ -268,6 +284,14 @@
       "type": "audio"
     },
     {
+      "name": "喜羊羊与灰太狼红太狼狂想曲高清完整版",
+      "file": "music/学习/喜羊羊与灰太狼红太狼狂想曲高清完整版.mp4",
+      "duration": "未知",
+      "format": "mp4",
+      "fileSize": 12405657,
+      "type": "video"
+    },
+    {
       "name": "像极了（无损）",
       "file": "music/学习/像极了（无损）.MP3",
       "duration": "未知",
@@ -276,11 +300,11 @@
       "type": "audio"
     },
     {
-      "name": "熊出没《伴你成长》混剪MV 跟着欢快的旋律，感受成长的意义_1762934497",
-      "file": "music/学习/熊出没《伴你成长》混剪MV 跟着欢快的旋律，感受成长的意义_1762934497.mp4",
+      "name": "熊出没《伴你成长》混剪MV 跟着欢快的旋律，感受成长的意义",
+      "file": "music/学习/熊出没《伴你成长》混剪MV 跟着欢快的旋律，感受成长的意义.mp4",
       "duration": "未知",
       "format": "mp4",
-      "fileSize": 13264084,
+      "fileSize": 63201453,
       "type": "video"
     },
     {
@@ -1015,8 +1039,8 @@
     }
   ],
   "summary": {
-    "studyCount": 78,
+    "studyCount": 81,
     "restCount": 48,
-    "totalCount": 126
+    "totalCount": 129
   }
 }
